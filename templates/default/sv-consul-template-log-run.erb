@@ -1,0 +1,5 @@
+#!/bin/sh
+exec chpst -u '<%= node[:consul_template][:service_user] %>':'<%= node[:consul_template][:service_group] %>'  \
+  svlogd                                                                                                      \
+  /var/log/consul-template                                                                                    \
+#                                                                                                             #

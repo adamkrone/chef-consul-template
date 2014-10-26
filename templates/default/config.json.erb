@@ -1,0 +1,17 @@
+consul = "<%= @service_config['consul'] %>"
+<% if @service_config['token'] %>
+token = "<%= @service_config['token'] %>"
+<% end %>
+<% if @service_config['wait'] %>
+wait = "<%= @service_config['wait'] %>"
+<% end %>
+<% @service_config['templates'].each do |template| %>
+
+template {
+  source = "<%= template['source'] %>"
+  destination = "<%= template['destination'] %>"
+<% if template['command'] %>
+  command = "<%= template['command'] %>"
+<% end %>
+}
+<% end %>

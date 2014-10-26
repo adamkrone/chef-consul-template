@@ -1,0 +1,57 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["private_network", {ip: "192.168.33.10"}]
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[consul::default]
+      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template::default]
+    attributes:
+      consul:
+        bind_interface: 'eth1'
+        bind_addr: '192.168.33.10'
+      consul_template:
+        consul: '127.0.0.1:8500'
+        templates:
+          - source: '/tmp/test.ctmpl'
+            destination: '/tmp/test'
+  - name: source
+    run_list:
+      - recipe[consul::default]
+      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template::default]
+    attributes:
+      consul:
+        bind_interface: 'eth1'
+        bind_addr: '192.168.33.10'
+      consul_template:
+        install_method: 'source'
+        consul: '127.0.0.1:8500'
+        templates:
+          - source: '/tmp/test.ctmpl'
+            destination: '/tmp/test'
+  - name: runit
+    run_list:
+      - recipe[consul::default]
+      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template::default]
+    attributes:
+      consul:
+        bind_interface: 'eth1'
+        bind_addr: '192.168.33.10'
+      consul_template:
+        init_style: 'runit'
+        consul: '127.0.0.1:8500'
+        templates:
+          - source: '/tmp/test.ctmpl'
+            destination: '/tmp/test'
