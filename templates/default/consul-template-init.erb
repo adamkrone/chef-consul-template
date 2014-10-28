@@ -10,12 +10,6 @@
 #                    Consul into the filesystem using the consul-template daemon.
 ### END INIT INFO
 
-if [ -f /etc/sysconfig/consul-template ]; then
-. /etc/sysconfig/consul
-fi
-
-export GOMAXPROCS=${GOMAXPROCS}
-
 CMD="<%= @command %>"
 NAME="consul-template"
 
