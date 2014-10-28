@@ -76,6 +76,7 @@ template consul_template_config_filename do
     service_config: service_config
   )
   action :create
+  notifies :restart, 'service[consul-template]', :delayed
 end
 
 case node['consul_template']['init_style']
@@ -92,13 +93,12 @@ when 'init'
       config_dir: node['consul_template']['config_dir'],
       command: command,
     )
-    notifies :restart, 'service[consul-template]', :immediately
+    notifies :restart, 'service[consul-template]', :delayed
   end
 
   service 'consul-template' do
     supports status: true, restart: true, reload: true
     action [:enable, :start]
-    subscribes :restart, "file[#{consul_template_config_filename}", :delayed
   end
 when 'runit'
   runit_service 'consul-template' do
