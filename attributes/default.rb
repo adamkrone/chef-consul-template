@@ -29,6 +29,7 @@ default['consul_template']['config_dir'] = '/etc/consul-template.d'
 default['consul_template']['init_style'] = 'init'   # 'init', 'runit'
 default['consul_template']['service_user'] = 'consul-template'
 default['consul_template']['service_group'] = 'consul-template'
+default['consul_template']['template_mode'] = 0600
 
 
 default['consul_template']['templates'] = []
