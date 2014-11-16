@@ -21,6 +21,7 @@ action :create do
 
   # Only notifies if any template is provided
   template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
+    cookbook 'consul-template'
     source 'config-template.json.erb'
     mode node['consul_template']['template_mode']
     variables(:templates => templates)

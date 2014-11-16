@@ -31,5 +31,5 @@ default['consul_template']['service_user'] = 'consul-template'
 default['consul_template']['service_group'] = 'consul-template'
 default['consul_template']['template_mode'] = 0600
 
-
-default['consul_template']['templates'] = []
+# Config attributes
+default['consul_template']['config'] = Hash.new
