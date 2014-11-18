@@ -10,7 +10,7 @@
 #                    Consul into the filesystem using the consul-template daemon.
 ### END INIT INFO
 
-CMD="<%= @command %>"
+CMD="<%= @command %> <%= @options %>"
 NAME="consul-template"
 
 PIDFILE="/var/run/$NAME.pid"

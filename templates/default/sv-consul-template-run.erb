@@ -1,5 +1,5 @@
 #!/bin/sh
 exec chpst -u '<%= node[:consul_template][:service_user] %>':'<%= node[:consul_template][:service_group] %>'  \
-  <%= @options[:consul_template_binary] %>                                                                    \
-  -config '<%= @options[:config_file] %>'                                                                      \
+  <%= @options[:command] %>                                                                                  \
+  <%= @options[:options] %>                                                                                  \
 #                                                                                                             #
