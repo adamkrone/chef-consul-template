@@ -68,7 +68,7 @@ when 'init'
   template '/etc/init.d/consul-template' do
     source 'consul-template-init.erb'
     mode 0755
-    variables( command: command, options: options )
+    variables(command: command, options: options, loglevel: node['consul_template']['log_level'])
     notifies :restart, 'service[consul-template]', :delayed
   end
   service 'consul-template' do

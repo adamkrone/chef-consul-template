@@ -26,6 +26,7 @@ default['consul_template']['checksums'] = {
 default['consul_template']['source_revision'] = 'master'
 
 # Service attributes
+default['consul_template']['log_level'] = 'info'
 default['consul_template']['config_dir'] = '/etc/consul-template.d'
 default['consul_template']['init_style'] = 'init'   # 'init', 'runit'
 default['consul_template']['service_user'] = 'consul-template'
