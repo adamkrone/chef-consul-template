@@ -3,7 +3,7 @@ template {
   source = "<%= template[:source] %>"
   destination = "<%= template[:destination] %>"
   <% unless template[:command].nil? %>
-  command = "<% template[:command] %>"
+  command = "<%= template[:command] %>"
   <% end %>
 }
 <% end  %>
