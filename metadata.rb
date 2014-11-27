@@ -4,7 +4,7 @@ maintainer_email 'krone.adam@gmail.com'
 license          'Apache v2.0'
 description      'Installs/Configures consul-template'
 long_description 'Installs/Configures consul-template'
-version          '0.4.0'
+version          '0.4.1'
 
 
 depends 'ark'
