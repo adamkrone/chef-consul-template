@@ -94,3 +94,7 @@ Vagrantfile
 # Travis #
 ##########
 .travis.yml
+
+# Scripts #
+###########
+scripts/*
