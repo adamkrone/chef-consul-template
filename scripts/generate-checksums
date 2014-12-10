@@ -21,7 +21,7 @@ function print_checksums {
   do
     binary=https://github.com/hashicorp/consul-template/releases/download/v${version}/${file}
     checksum=$(curl -L -s $binary | shasum -a 256 | awk '{print $1}')
-    echo $file: $checksum
+    echo "'${file//.tar.gz}' => '$checksum',"
   done
 }
 
