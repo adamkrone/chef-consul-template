@@ -9,10 +9,15 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
+  - name: ubuntu-12.04
+  - name: debian-7.7
+  - name: debian-6.0.10
+  - name: centos-6.5
 
 suites:
   - name: default
     run_list:
+      - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
       - recipe[consul-test-helpers::consul-template]
@@ -25,6 +30,7 @@ suites:
           consul: '127.0.0.1:8500'
   - name: source
     run_list:
+      - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
       - recipe[consul-test-helpers::consul-template]
@@ -38,6 +44,7 @@ suites:
           consul: '127.0.0.1:8500'
   - name: runit
     run_list:
+      - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
       - recipe[consul-test-helpers::consul-template]

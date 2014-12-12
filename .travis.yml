@@ -1,0 +1,16 @@
+language: ruby
+bundler_args: --jobs 4 --without integration
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.5
+env:
+  matrix:
+    - CHEF_VERSION=10.30
+    - CHEF_VERSION=11.16
+script:
+  - bundle exec rake
+notifications:
+  email:
+    recipients:
+      - krone.adam@gmail.com
