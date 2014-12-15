@@ -25,18 +25,16 @@ else
 end
 
 # Create service user
-user "consul-template service user: #{consul_template_user}" do
+user consul_template_user do
   not_if { consul_template_user == 'root' }
-  username consul_template_user
   home '/dev/null'
   shell '/bin/false'
   comment 'consul-template service user'
 end
 
 # Create service group
-group "consul-template service group: #{consul_template_group}" do
+group consul_template_group do
   not_if { consul_template_group == 'root' }
-  group_name consul_template_group
   members consul_template_user
   append true
 end

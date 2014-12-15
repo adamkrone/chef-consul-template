@@ -1,6 +1,9 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 require 'coveralls'
+
+require_relative 'support/matchers'
+
 Coveralls.wear!
 
 RSpec.configure do |config|
