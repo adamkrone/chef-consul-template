@@ -4,10 +4,6 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.5
-env:
-  matrix:
-    - CHEF_VERSION=10.34.6
-    - CHEF_VERSION=11.16.4
 script:
   - bundle exec rake
 notifications:
