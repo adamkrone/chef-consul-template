@@ -8,5 +8,5 @@ version          '0.4.3'
 
 
 depends 'ark'
-depends 'golang', '~> 1.3.0'
+depends 'golang', '~> 1.4.0'
 depends 'runit'
