@@ -63,15 +63,28 @@ command = "#{node['consul_template']['install_dir']}/consul-template"
 options = "-config #{node['consul_template']['config_dir']}"
 
 case node['consul_template']['init_style']
-
 when 'init'
-  template '/etc/init.d/consul-template' do
-    source 'consul-template-init.erb'
-    mode 0755
-    variables(command: command, options: options, loglevel: node['consul_template']['log_level'])
-    notifies :restart, 'service[consul-template]', :delayed
+  if platform?("ubuntu")
+    init_file = '/etc/init/consul-template.conf'
+    init_tmpl = 'consul-template-conf.erb'
+  else
+    init_file = '/etc/init.d/consul-template'
+    init_tmpl = 'consul-template-init.erb'
   end
+
+  template init_file do
+    source init_tmpl
+    mode 0755
+    variables(
+        command: command,
+        options: options,
+        loglevel: node['consul_template']['log_level']
+    )
+    notifies :restart, 'service[consul-template]', :immediately
+  end
+
   service 'consul-template' do
+    provider Chef::Provider::Service::Upstart if platform?("ubuntu")
     supports status: true, restart: true, reload: true
     action [:enable, :start]
   end
@@ -81,7 +94,10 @@ when 'runit'
     supports status: true, restart: true, reload: true
     action [:enable, :start]
     log true
-    options( command: command, options: options )
+    options(
+        command: command,
+        options: options
+    )
   end
 
 end
