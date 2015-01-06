@@ -11,10 +11,6 @@ describe 'consul-template::service' do
     expect(chef_run).to create_template('/etc/consul-template.d/default.json')
   end
 
-  it 'should create the consul-template init script' do
-    expect(chef_run).to create_template('/etc/init.d/consul-template')
-  end
-
   it 'should enable the consul-template service' do
     expect(chef_run).to enable_service('consul-template')
   end
@@ -24,6 +20,30 @@ describe 'consul-template::service' do
   end
 
   context 'when using init' do
+    let(:chef_run) do
+      ChefSpec::Runner.new(platform: 'centos', version: '6.3').converge(described_recipe)
+    end
+    it 'should create the consul-template init script' do
+      expect(chef_run).to create_template('/etc/init.d/consul-template')
+    end
+
+    it 'should not create the consul-template service user (using root)' do
+      expect(chef_run).to_not create_user('root')
+    end
+
+    it 'should not create the consul-template service group (using root)' do
+      expect(chef_run).to_not create_group('root')
+    end
+  end
+
+  context 'when using upstart' do
+    let(:chef_run) do
+      ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe)
+    end
+    it 'should create the consul-template upstart script' do
+      expect(chef_run).to create_template('/etc/init/consul-template.conf')
+    end
+
     it 'should not create the consul-template service user (using root)' do
       expect(chef_run).to_not create_user('root')
     end

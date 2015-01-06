@@ -4,7 +4,7 @@ describe 'consul-template::install_source' do
   let(:chef_run) { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
   before do
-    stub_command("/usr/local/go/bin/go version | grep \"go1.2 \"").and_return('1.4')
+    stub_command("/usr/local/go/bin/go version | grep \"go1.2.2 \"").and_return('1.4')
   end
 
   it 'should include golang::default' do
