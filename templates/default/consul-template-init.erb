@@ -16,6 +16,8 @@ NAME="consul-template"
 PIDFILE="/var/run/$NAME.pid"
 LOGFILE="/var/log/$NAME.log"
 
+export GOMAXPROCS=${GOMAXPROCS}
+
 get_pid() {
     cat "$PIDFILE"
 }
@@ -42,7 +44,7 @@ case "$1" in
     if is_running; then
         echo -n "Stopping $NAME..."
         kill `get_pid`
-        for i in {1..10}
+        for i in 1 2 3 4 5 6 7 8 9 10
         do
             if ! is_running; then
                 break
@@ -84,8 +86,15 @@ case "$1" in
     ;;
     reload)
     if is_running; then
-      echo -n "$NAME doesn't support reload, will attempt restart"
-      $0 restart
+        echo -n "Reloading $NAME..."
+        kill -HUP `get_pid`
+        sleep 1
+        echo
+
+        if ! is_running; then
+            echo "$NAME has died, see $LOGFILE"
+            exit 1
+        fi
     else
         echo "$NAME not running"
     fi
