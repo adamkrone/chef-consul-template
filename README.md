@@ -76,10 +76,11 @@ you may include something like this in your recipe:
 ```ruby
 consul_template_config 'haproxy' do
   templates [{
-     source: '/etc/haproxy/haproxy.cfg.ctmpl',
-     destination: '/etc/haproxy/haproxy.cfg',
-     command: 'service haproxy restart'
-   }]
+    source: '/etc/haproxy/haproxy.cfg.ctmpl',
+    destination: '/etc/haproxy/haproxy.cfg',
+    command: 'service haproxy restart'
+  }]
+  notifies :reload, 'service[consul-template]', :delayed
 end
 ```
 
