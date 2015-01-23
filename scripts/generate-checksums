@@ -2,7 +2,15 @@
 
 set -e
 
+USAGE=$(cat <<EOF
+Usage:
+  $0 version
+EOF)
+
 version=$1
+[ -z "$version" ] && { echo "$USAGE"; exit 1; }
+
+
 systems=( darwin_386 darwin_amd64 dragonfly_386 dragonfly_amd64 freebsd_386 freebsd_amd64 freebsd_arm linux_386 linux_amd64 linux_arm netbsd_386 netbsd_amd64 netbsd_arm openbsd_386 openbsd_amd64 plan9_386 solaris_amd64 windows_386 windows_amd64 )
 files=()
 
