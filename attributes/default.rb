@@ -1,5 +1,5 @@
 default['consul_template']['base_url'] = 'https://github.com/hashicorp/consul-template/releases/download/'
-default['consul_template']['version'] = '0.5.1'
+default['consul_template']['version'] = '0.6.0'
 default['consul_template']['install_method'] = 'binary'
 default['consul_template']['install_dir'] = '/usr/local/bin'
 default['consul_template']['checksums'] = {
