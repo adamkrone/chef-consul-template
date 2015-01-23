@@ -1,4 +1,5 @@
 #!/bin/sh
+exec 2>&1
 exec chpst -u '<%= node['consul_template']['service_user'] %>':'<%= node['consul_template']['service_group'] %>'  \
   <%= @options[:command] %>                                                                                  \
   <%= @options[:options] %>                                                                                  \
