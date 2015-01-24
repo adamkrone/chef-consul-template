@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'consul-template::service' do
-  let(:chef_run) { ChefSpec::ServerRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it 'should create the consul-template config directory' do
     expect(chef_run).to create_directory('/etc/consul-template.d')
@@ -21,7 +21,7 @@ describe 'consul-template::service' do
 
   context 'when using init' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'centos', version: '6.3').converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'centos', version: '6.3').converge(described_recipe)
     end
     it 'should create the consul-template init script' do
       expect(chef_run).to create_template('/etc/init.d/consul-template')
@@ -38,7 +38,7 @@ describe 'consul-template::service' do
 
   context 'when using upstart' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe)
     end
     it 'should create the consul-template upstart script' do
       expect(chef_run).to create_template('/etc/init/consul-template.conf')
@@ -55,7 +55,7 @@ describe 'consul-template::service' do
 
   context 'when using runit' do
     let(:chef_run) do
-      ChefSpec::ServerRunner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['consul_template']['init_style'] = 'runit'
       end.converge(described_recipe)
     end

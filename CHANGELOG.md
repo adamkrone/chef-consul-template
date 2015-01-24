@@ -16,6 +16,7 @@ IMPROVEMENTS:
 - Allow the `consul_template.log_level` attribute to control the log level used
   by consul when managed by runit
   ([GH-11](https://github.com/adamkrone/chef-consul-template/pull/11))
+- Dramatically improves ChefSpec test speed by switching to SoloRunner
 
 ## v0.6.0 (January 23, 2015)
 

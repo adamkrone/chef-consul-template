@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'consul-template::install_source' do
-  let(:chef_run) { ChefSpec::ServerRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   before do
     stub_command("/usr/local/go/bin/go version | grep \"go1.2.2 \"").and_return('1.4')
