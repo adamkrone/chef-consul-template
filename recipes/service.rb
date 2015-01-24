@@ -98,9 +98,7 @@ when 'runit'
         command: command,
         options: options
     )
-    env({
-      'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
-    })
+    env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
   end
 
 end
