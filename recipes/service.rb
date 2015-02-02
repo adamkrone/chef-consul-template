@@ -7,6 +7,8 @@
 #
 #
 
+require 'json'
+
 # Configure directories
 consul_template_directories = []
 consul_template_directories << node['consul_template']['config_dir']
@@ -50,12 +52,12 @@ end
 
 # Define global options here. use consul_template lwrp to register new
 # templates
-template File.join(node['consul_template']['config_dir'], 'default.json') do
-  source 'config.json.erb'
+file File.join(node['consul_template']['config_dir'], 'default.json') do
   user consul_template_user
   group consul_template_group
   mode node['consul_template']['template_mode']
   action :create
+  content JSON.pretty_generate(node['consul_template']['config'], quirks_mode: true)
   notifies :restart, 'service[consul-template]', :delayed
 end
 
