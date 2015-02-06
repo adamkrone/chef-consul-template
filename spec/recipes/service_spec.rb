@@ -8,7 +8,7 @@ describe 'consul-template::service' do
   end
 
   it 'should create the consul-template default config' do
-    expect(chef_run).to create_template('/etc/consul-template.d/default.json')
+    expect(chef_run).to create_file('/etc/consul-template.d/default.json')
   end
 
   it 'should enable the consul-template service' do

@@ -1,5 +1,0 @@
-<% node['consul_template']['config'].each do |key, value| -%>
-    <% unless value.nil? -%>
-<%= key %> = "<%= value %>"
-    <% end %>
-<% end %>
