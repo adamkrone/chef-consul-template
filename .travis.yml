@@ -1,6 +1,5 @@
 language: ruby
 sudo: false
-cache: bundler
 bundler_args: --jobs 4 --without integration
 rvm:
   - 1.9.3
