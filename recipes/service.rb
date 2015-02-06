@@ -78,9 +78,9 @@ when 'init'
     source init_tmpl
     mode 0755
     variables(
-        command: command,
-        options: options,
-        loglevel: node['consul_template']['log_level']
+      command: command,
+      options: options,
+      loglevel: node['consul_template']['log_level']
     )
     notifies :restart, 'service[consul-template]', :immediately
   end
@@ -97,8 +97,8 @@ when 'runit'
     action [:enable, :start]
     log true
     options(
-        command: command,
-        options: options
+      command: command,
+      options: options
     )
     env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
   end

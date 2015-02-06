@@ -1,1 +1,5 @@
+AllCops:
+  Exclude:
+    - 'metadata.rb'
+    - '.kitchen*'
 inherit_from: .rubocop_todo.yml
