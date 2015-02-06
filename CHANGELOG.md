@@ -1,7 +1,7 @@
 Consul Template Cookbook Changelog
 ==================================
 
-## Unreleased
+## v0.6.5 (February 5th, 2015)
 
 BUG FIXES:
 
@@ -17,6 +17,10 @@ IMPROVEMENTS:
   by consul when managed by runit
   ([GH-11](https://github.com/adamkrone/chef-consul-template/pull/11))
 - Dramatically improves ChefSpec test speed by switching to SoloRunner
+- Switch to JSON dump for default.json config file
+  ([GH-12](https://github.com/adamkrone/chef-consul-template/pull/12))
+- Updates default version of consul-template to 0.6.5 and adds new checksums
+  ([GH-13](https://github.com/adamkrone/chef-consul-template/pull/13))
 
 ## v0.6.0 (January 23, 2015)
 
