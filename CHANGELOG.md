@@ -1,6 +1,15 @@
 Consul Template Cookbook Changelog
 ==================================
 
+## v0.7.0 (February 6th, 2015)
+
+IMPROVEMENTS:
+
+- Adds recipe and support information to metadata.rb
+- Released to Chef Supermarket
+- Switching to true SemVer. To this point we were matching the version of the
+  consul-template project, regardless of the changes to the cookbook itself.
+
 ## v0.6.5 (February 5th, 2015)
 
 BUG FIXES:
