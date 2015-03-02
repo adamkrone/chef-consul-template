@@ -1,6 +1,13 @@
 Consul Template Cookbook Changelog
 ==================================
 
+## Unreleased
+
+IMPROVEMENTS:
+
+- Updates default version of consul-template to 0.7.0 and adds new checksums
+  ([GH-15](https://github.com/adamkrone/chef-consul-template/pull/15))
+
 ## v0.7.0 (February 6th, 2015)
 
 IMPROVEMENTS:
