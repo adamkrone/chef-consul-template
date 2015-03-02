@@ -1,5 +1,5 @@
 default['consul_template']['base_url'] = 'https://github.com/hashicorp/consul-template/releases/download/'
-default['consul_template']['version'] = '0.6.5'
+default['consul_template']['version'] = '0.7.0'
 default['consul_template']['install_method'] = 'binary'
 default['consul_template']['install_dir'] = '/usr/local/bin'
 default['consul_template']['checksums'] = {
@@ -56,6 +56,21 @@ default['consul_template']['checksums'] = {
   'consul-template_0.6.5_openbsd_amd64' => '5516fe7223caffb47f927a5e76d2075adb3845e155e1e7cdbf034e4d3986f0c9',
   'consul-template_0.6.5_windows_386' => 'd75b5621b88f4a24e92e7ab6cc70dbf5467362ec9d38db976e2b694be2a9b3fc',
   'consul-template_0.6.5_windows_amd64' => '0b5b4b271e9376b17a83e79473d90e292037c38777bb871b929d8499f805968b',
+  'consul-template_0.7.0_darwin_386' => '4bf9284eb802e6faaaab6f74b04426e1a5fe9d2d63536a5085b93561c6f52b21',
+  'consul-template_0.7.0_darwin_amd64' => '6cb534d6c2df8e6ad1ffcdeae8ae233989efabe722812ea3396d591ae28c5be5',
+  'consul-template_0.7.0_freebsd_386' => 'e2d30e989de14a4fabf7904eeaa272cf43b837d433c01564cfaaf08af8a3070d',
+  'consul-template_0.7.0_freebsd_amd64' => '25b71fff953731e4833bb5b8287875f84961ae9f1e385685f80a129164f3047b',
+  'consul-template_0.7.0_freebsd_arm' => '91482e0ea4ca8b280c1f5c9d72a4a82ddd7f73c5c44706b42951ab74624fac82',
+  'consul-template_0.7.0_linux_386' => 'adf1e8d85ab3a6b1498850b26f0bc5c2884cd629b57e834a6090ad0023d93840',
+  'consul-template_0.7.0_linux_amd64' => '7b8fb97caef72f9e67bbb9069042b8e01f7efed3acd2a32f560a8fe60146d874',
+  'consul-template_0.7.0_linux_arm' => '4e1d0eeafa18420f63c071c97b0dd7806a2197d0c5909b0781e958565014fc1f',
+  'consul-template_0.7.0_netbsd_386' => '63fdf0db30dc0e791313bc81ab1c735139e64d7526c3efca491a4b0108e71749',
+  'consul-template_0.7.0_netbsd_amd64' => '609bc16aa045398e4c67d53ee721aeb083a2042c76bf2cb595438f0f9419bb19',
+  'consul-template_0.7.0_netbsd_arm' => '0fc73687fb64beefd881e4581e22d44597979aa26e8c9978e73df70cc50837eb',
+  'consul-template_0.7.0_openbsd_386' => '6eafd67e4ff3f8f0437bcbd0eec3b10aec9727d505206e873603b6f738306a24',
+  'consul-template_0.7.0_openbsd_amd64' => '2958ae8e12a383821bbc2315731d5227b2b375e73eac23c0b98295ba1842d7b5',
+  'consul-template_0.7.0_windows_386' => '2799405bb39b23da69a82d84ffbc8ddb6c0b73f6de04e45d9030ec4ee9a92788',
+  'consul-template_0.7.0_windows_amd64' => 'b527bc794ff8cacb43a8b31fb508b834d76272abcbf81756ea301e34c1f0a5d0',
 }
 default['consul_template']['source_revision'] = 'master'
 
