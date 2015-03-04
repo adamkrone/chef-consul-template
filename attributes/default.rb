@@ -19,4 +19,3 @@ default['consul_template']['template_mode'] = 0600
 
 # Config attributes
 default['consul_template']['config'] = Hash.new
-
