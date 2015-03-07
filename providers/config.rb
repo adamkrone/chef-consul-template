@@ -27,8 +27,8 @@ action :create do
     user consul_template_user
     group consul_template_group
     mode node['consul_template']['template_mode']
-	recursive true
-	action :create
+    recursive true
+    action :create
   end
 
   template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
