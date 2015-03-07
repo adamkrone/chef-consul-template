@@ -9,6 +9,8 @@ IMPROVEMENTS:
   ([GH-15](https://github.com/adamkrone/chef-consul-template/pull/15))
 - Moves checksums to their own attribute file
   ([GH-16](https://github.com/adamkrone/chef-consul-template/pull/16))
+- Ensures config directory exists in LWRP
+  ([GH-18](https://github.com/adamkrone/chef-consul-template/pull/18))
 
 ## v0.7.0 (February 6th, 2015)
 
