@@ -22,6 +22,15 @@ action :create do
     fail "Missing destination for #{i} entry at '#{new_resource.name}" if v[:destination].nil?
   end
 
+  # Ensure config directory exists
+  directory node['consul_template']['config_dir'] do
+    user consul_template_user
+    group consul_template_group
+    mode node['consul_template']['template_mode']
+    recursive true
+    action :create
+  end
+
   template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
     cookbook 'consul-template'
     source 'config-template.json.erb'
