@@ -11,6 +11,8 @@ IMPROVEMENTS:
   ([GH-16](https://github.com/adamkrone/chef-consul-template/pull/16))
 - Ensures config directory exists in LWRP
   ([GH-18](https://github.com/adamkrone/chef-consul-template/pull/18))
+- Fixes config directory permissions in LWRP
+  ([GH-19](https://github.com/adamkrone/chef-consul-template/issues/19))
 
 ## v0.7.0 (February 6th, 2015)
 
