@@ -80,4 +80,32 @@ describe 'consul-template::service' do
       expect(chef_run).to start_runit_service('consul-template')
     end
   end
+
+  context 'when using systemd' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new do |node|
+        node.set['consul_template']['init_style'] = 'systemd'
+      end.converge(described_recipe)
+    end
+
+    it 'should create the consul-template service user' do
+      expect(chef_run).to create_user('consul-template')
+    end
+
+    it 'should create the consul-template service group' do
+      expect(chef_run).to create_group('consul-template')
+    end
+
+    it 'should create the consul-template log directory' do
+      expect(chef_run).to create_directory('/var/log/consul-template')
+    end
+
+    it 'should enable the consul-template service' do
+      expect(chef_run).to enable_service('consul-template')
+    end
+
+    it 'should start the consul-template service' do
+      expect(chef_run).to start_service('consul-template')
+    end
+  end
 end
