@@ -3,6 +3,11 @@ Consul Template Cookbook Changelog
 
 ## Unreleased
 
+FEATURES:
+
+- Adds support for systemd
+  ([GH-21](https://github.com/adamkrone/chef-consul-template/pull/21))
+
 IMPROVEMENTS:
 
 - Updates default version of consul-template to 0.7.0 and adds new checksums
