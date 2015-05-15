@@ -1,0 +1,16 @@
+[Unit]
+Description=Consul Template Daemon
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+User=<%= node['consul_template']['service_user'] %>
+Group=<%= node['consul_template']['service_group'] %>
+ExecStart=<%= @command %> <%= @options %>
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

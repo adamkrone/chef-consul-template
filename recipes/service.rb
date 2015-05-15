@@ -21,6 +21,9 @@ when 'runit'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
   consul_template_directories << '/var/log/consul-template'
+when 'systemd'
+  consul_template_user = node['consul_template']['service_user']
+  consul_template_group = node['consul_template']['service_group']
 else
   consul_template_user = 'root'
   consul_template_group = 'root'
@@ -101,6 +104,22 @@ when 'runit'
       options: options
     )
     env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
+  end
+
+when 'systemd'
+  template '/etc/systemd/system/consul-template.service' do
+    source 'consul-template-systemd.erb'
+    mode 0755
+    variables(
+      command: command,
+      options: options
+    )
+    notifies :restart, 'service[consul-template]', :immediately
+  end
+
+  service 'consul-template' do
+    supports status: true, restart: true, reload: true
+    action [:enable, :start]
   end
 
 end
