@@ -96,8 +96,8 @@ describe 'consul-template::service' do
       expect(chef_run).to create_group('consul-template')
     end
 
-    it 'should create the consul-template log directory' do
-      expect(chef_run).to create_directory('/var/log/consul-template')
+    it 'should create the consul-template service config' do
+      expect(chef_run).to create_template('/etc/systemd/system/consul-template.service')
     end
 
     it 'should enable the consul-template service' do
