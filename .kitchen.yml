@@ -19,10 +19,10 @@ suites:
       - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
-      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template-spec::consul_template_config]
     attributes:
       apt:
-	compile_time_update: true
+        compile_time_update: true
       consul_template:
         config:
           consul: '127.0.0.1:8500'
@@ -31,10 +31,10 @@ suites:
       - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
-      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template-spec::consul_template_config]
     attributes:
       apt:
-	compile_time_update: true
+        compile_time_update: true
       consul_template:
         install_method: 'source'
         config:
@@ -44,11 +44,24 @@ suites:
       - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
-      - recipe[consul-test-helpers::consul-template]
+      - recipe[consul-template-spec::consul_template_config]
     attributes:
       apt:
-	compile_time_update: true
+        compile_time_update: true
       consul_template:
         init_style: 'runit'
+        config:
+          consul: '127.0.0.1:8500'
+  - name: systemd
+    run_list:
+      - recipe[consul::default]
+      - recipe[consul-template::default]
+      - recipe[consul-template-spec::consul_template_config]
+    includes: ['centos-7.1']
+    attributes:
+      consul:
+        init_style: 'systemd'
+      consul_template:
+        init_style: 'systemd'
         config:
           consul: '127.0.0.1:8500'
