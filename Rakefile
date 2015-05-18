@@ -26,3 +26,6 @@ begin
 rescue LoadError
   task("kitchen:all") { puts "Unable to run `test-kitchen`" }
 end
+
+require 'stove/rake_task'
+Stove::RakeTask.new
