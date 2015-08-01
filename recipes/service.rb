@@ -61,7 +61,11 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   mode node['consul_template']['template_mode']
   action :create
   content JSON.pretty_generate(node['consul_template']['config'], quirks_mode: true)
-  notifies :restart, 'service[consul-template]', :delayed
+  if node['consul_template']['init_style'] == 'runit'
+    notifies :restart, 'runit_service[consul-template]', :delayed
+  else
+    notifies :restart, 'service[consul-template]', :delayed
+  end
 end
 
 command = "#{node['consul_template']['install_dir']}/consul-template"
