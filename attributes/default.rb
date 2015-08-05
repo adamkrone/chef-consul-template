@@ -27,5 +27,3 @@ end
 
 # Config attributes
 default['consul_template']['config'] = Hash.new
-
-
