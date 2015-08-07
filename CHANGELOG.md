@@ -1,6 +1,16 @@
 Consul Template Cookbook Changelog
 ==================================
 
+## v0.9.0 (Unreleased)
+
+BUG FIXES:
+
+- Notify restart runit_service if such is the init_style
+  ([GH-26](https://github.com/adamkrone/chef-consul-template/pull/26))
+- Updates default version of consul-template to 0.10.0 and adds new checksums
+  ([GH-25](https://github.com/adamkrone/chef-consul-template/pull/25))
+  ([GH-27](https://github.com/adamkrone/chef-consul-template/pull/27))
+
 ## v0.8.0 (May 18th, 2015)
 
 FEATURES:
