@@ -10,6 +10,7 @@ default['consul_template']['install_dir'] = '/usr/local/bin'
 default['consul_template']['source_revision'] = 'master'
 
 # Service attributes
+default['consul_template']['consul_uri'] = '127.0.0.1:8500'
 default['consul_template']['log_level'] = 'info'
 default['consul_template']['config_dir'] = '/etc/consul-template.d'
 default['consul_template']['init_style'] = 'init' # 'init', 'runit', 'systemd'

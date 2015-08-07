@@ -69,7 +69,7 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
 end
 
 command = "#{node['consul_template']['install_dir']}/consul-template"
-options = "-config #{node['consul_template']['config_dir']}"
+options = "-consul #{node['consul_template']['consul_uri']} -config #{node['consul_template']['config_dir']}"
 
 case node['consul_template']['init_style']
 when 'init'

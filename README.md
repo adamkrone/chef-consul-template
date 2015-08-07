@@ -18,6 +18,7 @@ Installs and configures [consul-template](https://github.com/hashicorp/consul-te
 
 ## Attributes
 
+- `node['consul_template']['consul_uri']` - The location of the Consul instance to query (may be an IP address or FQDN) with port.
 - `node['consul_template']['base_url']` - Base URL for consul-template binary files
 - `node['consul_template']['version']` - Version of consul-template to install.
   Used to determine which binary to grab from the base_url.
