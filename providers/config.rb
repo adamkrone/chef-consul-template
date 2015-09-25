@@ -41,3 +41,12 @@ action :create do
     not_if { templates.empty? }
   end
 end
+
+action :delete do
+  file ::File.join(node['consul_template']['config_dir'], new_resource.name) do
+    action :delete
+  end
+end
+
+alias_method :action_add, :action_create
+alias_method :action_remove, :action_delete

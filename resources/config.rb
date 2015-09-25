@@ -1,4 +1,4 @@
-actions :create
+actions :create, :delete, :add, :remove
 default_action :create if defined?(default_action)
 
 def initialize(*args)
