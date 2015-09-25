@@ -10,6 +10,8 @@ BUG FIXES:
 - Updates default version of consul-template to 0.10.0 and adds new checksums
   ([GH-25](https://github.com/adamkrone/chef-consul-template/pull/25))
   ([GH-27](https://github.com/adamkrone/chef-consul-template/pull/27))
+- Adds delete action for consul_template_config LWRP
+  ([GH-30](https://github.com/adamkrone/chef-consul-template/pull/30))
 
 ## v0.8.0 (May 18th, 2015)
 
