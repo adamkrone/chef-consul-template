@@ -15,18 +15,18 @@ consul_template_directories << node['consul_template']['config_dir']
 
 # Select service user & group
 case node['consul_template']['init_style']
-  when 'runit'
-    include_recipe 'runit::default'
+when 'runit'
+  include_recipe 'runit::default'
 
-    consul_template_user = node['consul_template']['service_user']
-    consul_template_group = node['consul_template']['service_group']
-    consul_template_directories << '/var/log/consul-template'
-  when 'systemd'
-    consul_template_user = node['consul_template']['service_user']
-    consul_template_group = node['consul_template']['service_group']
-  else
-    consul_template_user = 'root'
-    consul_template_group = 'root'
+  consul_template_user = node['consul_template']['service_user']
+  consul_template_group = node['consul_template']['service_group']
+  consul_template_directories << '/var/log/consul-template'
+when 'systemd'
+  consul_template_user = node['consul_template']['service_user']
+  consul_template_group = node['consul_template']['service_group']
+else
+  consul_template_user = 'root'
+  consul_template_group = 'root'
 end
 
 # Create service user
@@ -72,60 +72,60 @@ command = "#{node['consul_template']['install_dir']}/consul-template"
 options = "-config #{node['consul_template']['config_dir']}"
 
 case node['consul_template']['init_style']
-  when 'init', 'upstart'
-    is_upstart = node['consul_template']['init_style'] == 'upstart'
-    if platform?("ubuntu") || is_upstart
-      is_upstart = true
-      init_file = '/etc/init/consul-template.conf'
-      init_tmpl = 'consul-template-conf.erb'
-    else
-      init_file = '/etc/init.d/consul-template'
-      init_tmpl = 'consul-template-init.erb'
-    end
+when 'init', 'upstart'
+  is_upstart = node['consul_template']['init_style'] == 'upstart'
+  if platform?("ubuntu") || is_upstart
+    is_upstart = true
+    init_file = '/etc/init/consul-template.conf'
+    init_tmpl = 'consul-template-conf.erb'
+  else
+    init_file = '/etc/init.d/consul-template'
+    init_tmpl = 'consul-template-init.erb'
+  end
 
-    template init_file do
-      source init_tmpl
-      mode 0755
-      variables(
-          command: command,
-          options: options,
-          loglevel: node['consul_template']['log_level']
-      )
-      notifies :restart, 'service[consul-template]', :immediately
-    end
+  template init_file do
+    source init_tmpl
+    mode 0755
+    variables(
+      command: command,
+      options: options,
+      loglevel: node['consul_template']['log_level']
+    )
+    notifies :restart, 'service[consul-template]', :immediately
+  end
 
-    service 'consul-template' do
-      provider Chef::Provider::Service::Upstart if is_upstart
-      supports status: true, restart: true, reload: true
-      action [:enable, :start]
-    end
+  service 'consul-template' do
+    provider Chef::Provider::Service::Upstart if is_upstart
+    supports status: true, restart: true, reload: true
+    action [:enable, :start]
+  end
 
-  when 'runit'
-    runit_service 'consul-template' do
-      supports status: true, restart: true, reload: true
-      action [:enable, :start]
-      log true
-      options(
-          command: command,
-          options: options
-      )
-      env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
-    end
+when 'runit'
+  runit_service 'consul-template' do
+    supports status: true, restart: true, reload: true
+    action [:enable, :start]
+    log true
+    options(
+      command: command,
+      options: options
+    )
+    env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
+  end
 
-  when 'systemd'
-    template '/etc/systemd/system/consul-template.service' do
-      source 'consul-template-systemd.erb'
-      mode 0755
-      variables(
-          command: command,
-          options: options
-      )
-      notifies :restart, 'service[consul-template]', :immediately
-    end
+when 'systemd'
+  template '/etc/systemd/system/consul-template.service' do
+    source 'consul-template-systemd.erb'
+    mode 0755
+    variables(
+      command: command,
+      options: options
+    )
+    notifies :restart, 'service[consul-template]', :immediately
+  end
 
-    service 'consul-template' do
-      supports status: true, restart: true, reload: true
-      action [:enable, :start]
-    end
+  service 'consul-template' do
+    supports status: true, restart: true, reload: true
+    action [:enable, :start]
+  end
 
 end
