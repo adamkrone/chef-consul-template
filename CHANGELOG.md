@@ -12,6 +12,8 @@ BUG FIXES:
   ([GH-27](https://github.com/adamkrone/chef-consul-template/pull/27))
 - Adds delete action for consul_template_config LWRP
   ([GH-30](https://github.com/adamkrone/chef-consul-template/pull/30))
+- Allows upstart to be used outside of Ubuntu
+  ([GH-29](https://github.com/adamkrone/chef-consul-template/pull/29))
 
 ## v0.8.0 (May 18th, 2015)
 
