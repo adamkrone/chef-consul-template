@@ -72,8 +72,10 @@ command = "#{node['consul_template']['install_dir']}/consul-template"
 options = "-config #{node['consul_template']['config_dir']}"
 
 case node['consul_template']['init_style']
-when 'init'
-  if platform?("ubuntu")
+when 'init', 'upstart'
+  is_upstart = node['consul_template']['init_style'] == 'upstart'
+  if platform?("ubuntu") || is_upstart
+    is_upstart = true
     init_file = '/etc/init/consul-template.conf'
     init_tmpl = 'consul-template-conf.erb'
   else
@@ -93,7 +95,7 @@ when 'init'
   end
 
   service 'consul-template' do
-    provider Chef::Provider::Service::Upstart if platform?("ubuntu")
+    provider Chef::Provider::Service::Upstart if is_upstart
     supports status: true, restart: true, reload: true
     action [:enable, :start]
   end
