@@ -3,17 +3,25 @@ Consul Template Cookbook Changelog
 
 ## v0.9.0 (Unreleased)
 
+FEATURES:
+
+- Adds delete action for consul_template_config LWRP
+  ([GH-30](https://github.com/adamkrone/chef-consul-template/pull/30))
+
+IMPROVEMENTS:
+
+- Allows upstart to be used outside of Ubuntu
+  ([GH-29](https://github.com/adamkrone/chef-consul-template/pull/29))
+- Updates default version of consul-template to 0.11.0, adds new checksums,
+  and handles new zip format
+  ([GH-25](https://github.com/adamkrone/chef-consul-template/pull/25))
+  ([GH-27](https://github.com/adamkrone/chef-consul-template/pull/27))
+  ([GH-32](https://github.com/adamkrone/chef-consul-template/pull/32))
+
 BUG FIXES:
 
 - Notify restart runit_service if such is the init_style
   ([GH-26](https://github.com/adamkrone/chef-consul-template/pull/26))
-- Updates default version of consul-template to 0.10.0 and adds new checksums
-  ([GH-25](https://github.com/adamkrone/chef-consul-template/pull/25))
-  ([GH-27](https://github.com/adamkrone/chef-consul-template/pull/27))
-- Adds delete action for consul_template_config LWRP
-  ([GH-30](https://github.com/adamkrone/chef-consul-template/pull/30))
-- Allows upstart to be used outside of Ubuntu
-  ([GH-29](https://github.com/adamkrone/chef-consul-template/pull/29))
 
 ## v0.8.0 (May 18th, 2015)
 
