@@ -5,5 +5,8 @@ template {
   <% unless template[:command].nil? %>
   command = "<%= template[:command] %>"
   <% end %>
+  <% unless template[:perms].nil? %>
+  perms = "<%= template[:perms] %>"
+  <% end %>
 }
 <% end  %>
