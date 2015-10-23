@@ -1,7 +1,7 @@
 Consul Template Cookbook Changelog
 ==================================
 
-## v0.9.0 (Unreleased)
+## v0.9.0 (October 23rd, 2015)
 
 FEATURES:
 
