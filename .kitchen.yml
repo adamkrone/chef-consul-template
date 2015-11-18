@@ -23,6 +23,10 @@ suites:
     attributes:
       apt:
         compile_time_update: true
+      consul:
+        config:
+          bootstrap_expect: 1
+          server: true
       consul_template:
         config:
           consul: '127.0.0.1:8500'
@@ -35,6 +39,10 @@ suites:
     attributes:
       apt:
         compile_time_update: true
+      consul:
+        config:
+          bootstrap_expect: 1
+          server: true
       consul_template:
         install_method: 'source'
         config:
@@ -48,6 +56,10 @@ suites:
     attributes:
       apt:
         compile_time_update: true
+      consul:
+        config:
+          bootstrap_expect: 1
+          server: true
       consul_template:
         init_style: 'runit'
         config:
@@ -61,6 +73,9 @@ suites:
     attributes:
       consul:
         init_style: 'systemd'
+        config:
+          bootstrap_expect: 1
+          server: true
       consul_template:
         init_style: 'systemd'
         config:
