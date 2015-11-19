@@ -1,6 +1,13 @@
 Consul Template Cookbook Changelog
 ==================================
 
+## v0.9.1 (November 19th, 2015)
+
+BUG FIXES:
+
+- Removes quotes around perms in config template
+  ([GH-33](https://github.com/adamkrone/chef-consul-template/pull/33))
+
 ## v0.9.0 (October 23rd, 2015)
 
 FEATURES:
