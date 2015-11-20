@@ -13,7 +13,7 @@ require 'chef/version_constraint'
 install_arch = node['kernel']['machine'] =~ /x86_64/ ? 'amd64' : '386'
 install_0_11 = Chef::VersionConstraint.new(">= 0.11.0").include?(node['consul_template']['version'])
 install_version = [
-  install_0_11 ? 'consul_template' : 'consul-template',
+  'consul-template',
   node['consul_template']['version'],
   node['os'],
   install_arch
