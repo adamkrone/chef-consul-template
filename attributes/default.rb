@@ -2,7 +2,7 @@
 # attributes::default
 #
 
-default['consul_template']['base_url'] = 'https://github.com/hashicorp/consul-template/releases/download/'
+default['consul_template']['base_url'] = 'https://releases.hashicorp.com/consul-template/'
 default['consul_template']['version'] = '0.11.1'
 default['consul_template']['install_method'] = 'binary'
 default['consul_template']['install_dir'] = '/usr/local/bin'

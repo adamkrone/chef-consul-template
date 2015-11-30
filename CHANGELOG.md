@@ -4,7 +4,7 @@ Consul Template Cookbook Changelog
 ## v0.9.2 (November 30th, 2015)
 IMPROVEMENTS:
 
-- Updates default version of consul-template to 0.11.1, adds new checksums.
+- Updates default version of consul-template to 0.11.1, updated release download location, adds new checksums.
 
 ## v0.9.1 (November 19th, 2015)
 
