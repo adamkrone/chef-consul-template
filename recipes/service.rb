@@ -134,10 +134,8 @@ when 'systemd'
   end
 
 when 'supervisor'
-  my_command, my_options = command, options
-
   supervisor_service 'consul-template' do
-    command "#{my_command} #{my_options}"
+    command "#{node['consul_template']['install_dir']}/consul-template -config #{node['consul_template']['config_dir']}"
     user consul_template_user
     action [:enable, :start]
   end
