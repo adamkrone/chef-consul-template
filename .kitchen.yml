@@ -80,3 +80,20 @@ suites:
         init_style: 'systemd'
         config:
           consul: '127.0.0.1:8500'
+  - name: supervisor
+    run_list:
+      - recipe[supervisor::default]
+      - recipe[consul::default]
+      - recipe[consul-template::default]
+      - recipe[consul-template-spec::consul_template_config]
+    includes: ['centos-7.1']
+    attributes:
+      consul:
+        init_style: 'supervisor'
+        config:
+          bootstrap_expect: 1
+          server: true
+      consul_template:
+        init_style: 'supervisor'
+        config:
+          consul: '127.0.0.1:8500'

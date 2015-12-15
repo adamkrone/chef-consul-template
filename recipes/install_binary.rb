@@ -27,7 +27,7 @@ ark 'consul-template' do
   version node['consul_template']['version']
   checksum install_checksum
   url ::URI.join(node['consul_template']['base_url'],
-                 "v#{node['consul_template']['version']}/",
+                 "#{node['consul_template']['version']}/",
                  "#{install_version}#{install_compression}").to_s
   creates "#{install_compression_path}consul-template"
   action :cherry_pick
