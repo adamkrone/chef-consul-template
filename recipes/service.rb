@@ -134,10 +134,10 @@ when 'systemd'
   end
 
 when 'supervisor'
-  @command, @options = command, options
+  my_command, my_options = command, options
 
   supervisor_service 'consul-template' do
-    command "#{@command} #{@options}"
+    command "#{my_command} #{my_options}"
     user consul_template_user
     action [:enable, :start]
   end
