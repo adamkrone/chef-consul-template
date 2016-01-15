@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'consul-template::service' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache').converge(described_recipe) }
 
   it 'should create the consul-template config directory' do
     expect(chef_run).to create_directory('/etc/consul-template.d')
