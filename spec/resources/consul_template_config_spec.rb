@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe 'consul_template_config resource' do
   let(:example_recipe) { 'consul-template-spec::consul_template_config' }
-  let(:chef_run) { ChefSpec::SoloRunner.new(step_into: ['consul_template_config']).converge(example_recipe) }
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new(step_into: ['consul_template_config'], file_cache_path: '/var/chef/cache')
+                        .converge(example_recipe)
+  end
 
   describe 'create' do
     it 'should create the consul_template_config' do

@@ -20,5 +20,6 @@ supports 'centos', '= 6.5'
 supports 'arch'
 
 depends 'ark'
+depends 'libarchive'
 depends 'golang', '~> 1.4'
 depends 'runit'

@@ -48,5 +48,5 @@ action :delete do
   end
 end
 
-alias_method :action_add, :action_create
-alias_method :action_remove, :action_delete
+alias action_add action_create
+alias action_remove action_delete
