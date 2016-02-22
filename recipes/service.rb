@@ -21,7 +21,7 @@ when 'runit'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
   consul_template_directories << '/var/log/consul-template'
-when 'systemd'
+when 'systemd', 'upstart'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
 else
@@ -73,8 +73,7 @@ options = "-config #{node['consul_template']['config_dir']}"
 
 case node['consul_template']['init_style']
 when 'init', 'upstart'
-  is_upstart = node['consul_template']['init_style'] == 'upstart'
-  if platform?("ubuntu") || is_upstart
+  if node['consul_template']['init_style'] == 'upstart'
     is_upstart = true
     init_file = '/etc/init/consul-template.conf'
     init_tmpl = 'consul-template-conf.erb'
@@ -89,7 +88,9 @@ when 'init', 'upstart'
     variables(
       command: command,
       options: options,
-      loglevel: node['consul_template']['log_level']
+      loglevel: node['consul_template']['log_level'],
+      service_user: consul_template_user,
+      service_group: consul_template_group
     )
     notifies :restart, 'service[consul-template]', :immediately
   end
