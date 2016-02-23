@@ -44,12 +44,12 @@ describe 'consul-template::service' do
       expect(chef_run).to create_template('/etc/init/consul-template.conf')
     end
 
-    it 'should not create the consul-template service user (using root)' do
-      expect(chef_run).to_not create_user('root')
+    it 'should create the consul-template service user' do
+      expect(chef_run).to create_user('consul-template')
     end
 
-    it 'should not create the consul-template service group (using root)' do
-      expect(chef_run).to_not create_group('root')
+    it 'should create the consul-template service group' do
+      expect(chef_run).to create_group('consul-template')
     end
   end
 

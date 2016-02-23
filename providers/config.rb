@@ -8,7 +8,7 @@ action :create do
   templates = new_resource.templates.map { |v| Mash.from_hash(v) }
 
   case node['consul_template']['init_style']
-  when 'runit', 'systemd'
+  when 'runit', 'systemd', 'upstart'
     consul_template_user = node['consul_template']['service_user']
     consul_template_group = node['consul_template']['service_group']
   else
