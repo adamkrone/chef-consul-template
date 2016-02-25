@@ -8,18 +8,32 @@ provisioner:
 platforms:
   - name: ubuntu-14.04
   - name: ubuntu-12.04
-  - name: debian-7.7
+  - name: debian-8.2
+  - name: debian-7.9
   - name: debian-6.0.10
-  - name: centos-6.5
-  - name: centos-7.1
+  - name: centos-6.7
+  - name: centos-7.2
 
 suites:
+  - name: install_only
+    run_list:
+      - recipe[apt::default]
+      - recipe[consul::default]
+      - recipe[consul-template::install_binary]
+    attributes:
+      apt:
+        compile_time_update: true
+      consul:
+        config:
+          bootstrap_expect: 1
+          server: true
   - name: default
     run_list:
       - recipe[apt::default]
       - recipe[consul::default]
       - recipe[consul-template::default]
       - recipe[consul-template-spec::consul_template_config]
+    excludes: ['debian-8.2', 'centos-7.2']
     attributes:
       apt:
         compile_time_update: true
@@ -69,7 +83,7 @@ suites:
       - recipe[consul::default]
       - recipe[consul-template::default]
       - recipe[consul-template-spec::consul_template_config]
-    includes: ['centos-7.1']
+    includes: ['debian-8.2', 'centos-7.2']
     attributes:
       consul:
         init_style: 'systemd'
