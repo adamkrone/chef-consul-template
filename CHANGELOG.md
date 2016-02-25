@@ -1,20 +1,28 @@
 Consul Template Cookbook Changelog
 ==================================
 
-## v0.9.4 (January 13th, 2015)
+## v0.10.0 (February 25th, 2016)
+
 IMPROVEMENTS:
 
-- Updates default version of consul-template to 0.12.1, adds new checksums.
+- Updates default version of consul-template to 0.12.2, updated release
+  download location, adds new checksums.
+  ([GH-36](https://github.com/adamkrone/chef-consul-template/pull/36))
+  ([GH-39](https://github.com/adamkrone/chef-consul-template/pull/39))
+  ([GH-41](https://github.com/adamkrone/chef-consul-template/pull/41))
 
-## v0.9.3 (December 22nd, 2015)
-IMPROVEMENTS:
+BUG FIXES:
 
-- Updates default version of consul-template to 0.12.0, adds new checksums.
-
-## v0.9.2 (November 30th, 2015)
-IMPROVEMENTS:
-
-- Updates default version of consul-template to 0.11.1, updated release download location, adds new checksums.
+- Fixes issue preventing consul-template from updating existing installs
+  ([GH-38](https://github.com/adamkrone/chef-consul-template/issues/38))
+- Fixes issue causing a zero-length consul-template file being created in some
+  situations
+  ([GH-40](https://github.com/adamkrone/chef-consul-template/issues/40))
+- Fixes issue introduced in the GH-38 fix that prevented the install_binary
+  recipe from running by itself.
+  ([GH-43](https://github.com/adamkrone/chef-consul-template/pull/43))
+- Uses consul-template service user when using upstart.
+  ([GH-45](https://github.com/adamkrone/chef-consul-template/pull/45))
 
 ## v0.9.1 (November 19th, 2015)
 
