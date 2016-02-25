@@ -18,8 +18,8 @@ action :create do
 
   # Create entries in configs-template dir but only if it's well formed
   templates.each_with_index do |v, i|
-    fail "Missing source for #{i} entry at '#{new_resource.name}" if v[:source].nil?
-    fail "Missing destination for #{i} entry at '#{new_resource.name}" if v[:destination].nil?
+    raise "Missing source for #{i} entry at '#{new_resource.name}" if v[:source].nil?
+    raise "Missing destination for #{i} entry at '#{new_resource.name}" if v[:destination].nil?
   end
 
   # Ensure config directory exists
