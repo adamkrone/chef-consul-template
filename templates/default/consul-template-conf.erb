@@ -3,10 +3,15 @@ description "Consul Template Service (Upstart)"
 start on (local-filesystems and net-device-up IFACE!=lo)
 stop on runlevel [06]
 
+kill timeout 20
+
+setuid <%= @service_user %>
+setgid <%= @service_group %>
+
 env CONSUL_TEMPLATE_LOG=info
 env GOMAXPROCS=${GOMAXPROCS}
 
-exec <%= @command %> <%= @options %> >> /var/log/consul-template.log 2>&1
+exec <%= @command %> <%= @options %>
 
 respawn
 respawn limit 10 10
