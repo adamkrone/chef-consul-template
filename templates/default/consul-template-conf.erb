@@ -8,7 +8,7 @@ kill timeout 20
 setuid <%= @service_user %>
 setgid <%= @service_group %>
 
-env CONSUL_TEMPLATE_LOG=info
+env CONSUL_TEMPLATE_LOG=<%= @loglevel %>
 env GOMAXPROCS=${GOMAXPROCS}
 
 exec <%= @command %> <%= @options %>
