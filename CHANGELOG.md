@@ -8,6 +8,12 @@ IMPROVEMENTS:
 - Updates default version of consul-template to 0.13.0, adds new checksums
   ([GH-47](https://github.com/adamkrone/chef-consul-template/pull/47))
 
+BUG FIXES:
+
+- Drop "supports :reload" from runit_service definition since the
+  runit cookbook does not define a reload_command for runit_service
+  resources
+
 ## v0.10.0 (February 25th, 2016)
 
 IMPROVEMENTS:

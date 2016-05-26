@@ -104,7 +104,7 @@ when 'init', 'upstart'
 
 when 'runit'
   runit_service 'consul-template' do
-    supports status: true, restart: true, reload: true
+    supports status: true, restart: true
     action [:enable, :start]
     log true
     options(
