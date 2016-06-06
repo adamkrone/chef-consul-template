@@ -40,7 +40,7 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   notifies :restart, 'poise_service[consul-template]', :delayed
 end
 
-# Create service
+# Create service using poise
 poise_service 'consul-template' do
   command "#{cmd} #{opt}"
 end
