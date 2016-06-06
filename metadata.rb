@@ -20,6 +20,7 @@ depends 'ark'
 depends 'libarchive'
 depends 'golang', '~> 1.4'
 depends 'runit'
+depends 'poise-service'
 
 issues_url 'https://github.com/adamkrone/chef-consul-template/issues'
 source_url 'https://github.com/adamkrone/chef-consul-template'
