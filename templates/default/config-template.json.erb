@@ -8,5 +8,8 @@ template {
   <% unless template[:perms].nil? %>
   perms = <%= template[:perms] %>
   <% end %>
+  <% unless template[:wait].nil? %>
+  wait = "<%= template[:wait] %>"
+  <% end %>
 }
 <% end  %>
