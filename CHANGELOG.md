@@ -18,6 +18,8 @@ BUG FIXES:
   ([GH-49](https://github.com/adamkrone/chef-consul-template/pull/49))
 - Drops "supports :reload" from runit_service definition
   ([GH-52](https://github.com/adamkrone/chef-consul-template/pull/52))
+- Guards issues/source_url in metadata.rb, which is not supported in
+  Chef 11
 
 ## v0.10.0 (February 25th, 2016)
 
