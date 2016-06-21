@@ -16,8 +16,7 @@ class Chef::Recipe::ConsulTemplateHelpers
       ['consul-template',
        node['consul_template']['version'],
        node['os'],
-       install_arch(node['kernel']['machine'])
-      ].join('_')
+       install_arch(node['kernel']['machine'])].join('_')
     end
 
     private
