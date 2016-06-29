@@ -26,12 +26,12 @@ end
 libarchive_file ConsulTemplateHelpers.install_file(node) do
   path download_path
   extract_to install_path
-  mode 0755
+  mode 0o755
   not_if { File.exist? install_path }
   action :extract
 end
 
 link "#{node['consul_template']['install_dir']}/consul-template" do
   to "#{install_path}/consul-template"
-  mode 0755
+  mode 0o755
 end

@@ -26,7 +26,7 @@ action :create do
   directory node['consul_template']['config_dir'] do
     user consul_template_user
     group consul_template_group
-    mode 0755
+    mode 0o755
     recursive true
     action :create
   end

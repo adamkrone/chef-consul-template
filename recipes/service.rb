@@ -49,7 +49,7 @@ consul_template_directories.each do |dirname|
   directory dirname do
     owner consul_template_user
     group consul_template_group
-    mode 0755
+    mode 0o755
   end
 end
 
@@ -84,7 +84,7 @@ when 'init', 'upstart'
 
   template init_file do
     source init_tmpl
-    mode 0755
+    mode 0o755
     variables(
       command: command,
       options: options,
@@ -118,7 +118,7 @@ when 'runit'
 when 'systemd'
   template '/etc/systemd/system/consul-template.service' do
     source 'consul-template-systemd.erb'
-    mode 0755
+    mode 0o755
     variables(
       command: command,
       options: options
