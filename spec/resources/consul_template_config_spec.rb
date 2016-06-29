@@ -23,5 +23,10 @@ describe 'consul_template_config resource' do
     it 'should add the test key/value' do
       expect(chef_run).to run_execute('add test key/value')
     end
+
+    it 'should notify consul-template to restart' do
+      consul_template = chef_run.consul_template_config('test')
+      expect(consul_template).to notify('service[consul-template]').to(:restart).delayed
+    end
   end
 end
