@@ -32,6 +32,7 @@ command = "#{node['consul_template']['install_dir']}\
 nssm service_name do
   program command
   args %(-config="""#{node['consul_template']['config_dir']}""")
+  params node['consul_template']['nssm_params']
   action :install
 end
 
