@@ -14,7 +14,7 @@ platforms:
   - name: centos-7.2
   - name: windows-2012r2
     driver:
-      box: mwrock/windows2012r2
+      box: mwrock/Windows2012R2
       communicator: winrm
       shell_type: powershell
     provisioner:
