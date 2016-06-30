@@ -1,0 +1,15 @@
+<% @templates.each do |template| -%>
+template {
+  source = "<%= template[:source].tr('\\', '/') %>"
+  destination = "<%= template[:destination].tr('\\', '/') %>"
+  <% unless template[:command].nil? %>
+  command = "<%= template[:command].tr('\\', '/') %>"
+  <% end %>
+  <% unless template[:perms].nil? %>
+  perms = <%= template[:perms] %>
+  <% end %>
+  <% unless template[:wait].nil? %>
+  wait = "<%= template[:wait] %>"
+  <% end %>
+}
+<% end  %>
