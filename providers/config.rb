@@ -24,21 +24,32 @@ action :create do
 
   # Ensure config directory exists
   directory node['consul_template']['config_dir'] do
-    user consul_template_user
-    group consul_template_group
-    mode 0755
+    unless node['platform'] == 'windows'
+      user consul_template_user
+      group consul_template_group
+      mode 0o755
+    end
     recursive true
     action :create
   end
 
-  template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
-    cookbook 'consul-template'
-    source 'config-template.json.erb'
-    user consul_template_user
-    group consul_template_group
-    mode node['consul_template']['template_mode']
-    variables(:templates => templates)
-    not_if { templates.empty? }
+  if node['platform'] == 'windows'
+    template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
+      cookbook 'consul-template'
+      source 'config-template-win.json.erb'
+      variables(:templates => templates)
+      not_if { templates.empty? }
+    end
+  else
+    template ::File.join(node['consul_template']['config_dir'], new_resource.name) do
+      cookbook 'consul-template'
+      source 'config-template.json.erb'
+      user consul_template_user
+      group consul_template_group
+      mode node['consul_template']['template_mode']
+      variables(:templates => templates)
+      not_if { templates.empty? }
+    end
   end
 end
 

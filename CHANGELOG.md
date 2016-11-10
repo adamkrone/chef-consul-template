@@ -1,12 +1,25 @@
 Consul Template Cookbook Changelog
 ==================================
 
-## Unreleased
+## v0.11.0 (June 21st, 2016)
 
 IMPROVEMENTS:
 
-- Updates default version of consul-template to 0.13.0, adds new checksums
+- Updates default version of consul-template to 0.15.0, adds new checksums
   ([GH-47](https://github.com/adamkrone/chef-consul-template/pull/47))
+  ([GH-48](https://github.com/adamkrone/chef-consul-template/pull/48))
+  ([GH-53](https://github.com/adamkrone/chef-consul-template/pull/53))
+- Adds support for template-specific wait parameter
+  ([GH-50](https://github.com/adamkrone/chef-consul-template/pull/50))
+
+BUG FIXES:
+
+- Fixes log level in Upstart template
+  ([GH-49](https://github.com/adamkrone/chef-consul-template/pull/49))
+- Drops "supports :reload" from runit_service definition
+  ([GH-52](https://github.com/adamkrone/chef-consul-template/pull/52))
+- Guards issues/source_url in metadata.rb, which is not supported in
+  Chef 11
 
 ## v0.10.0 (February 25th, 2016)
 
