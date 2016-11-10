@@ -21,6 +21,8 @@ depends 'libarchive'
 depends 'golang', '~> 1.4'
 depends 'runit'
 depends 'nssm', '~> 1.2'
+depends 'poise-service'
+depends 'poise-service-runit'
 
 issues_url 'https://github.com/adamkrone/chef-consul-template/issues' if respond_to?(:issues_url)
 source_url 'https://github.com/adamkrone/chef-consul-template' if respond_to?(:source_url)

@@ -22,5 +22,5 @@ consul_template_config 'test' do
     command: 'touch /tmp/consul-template-command-test',
     perms: 777
   }]
-  notifies :restart, 'service[consul-template]'
+  notifies :restart, 'poise_service[consul-template]'
 end

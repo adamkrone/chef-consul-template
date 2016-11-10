@@ -29,11 +29,13 @@ default['consul_template']['template_mode'] = 0600
 default['consul_template']['config'] = Hash.new
 
 # Windows only
-default['consul_template']['nssm_params'] = {
-  'AppDirectory'     => data_path,
-  'AppStdout'        => join_path(config_prefix_path, 'stdout.log'),
-  'AppStderr'        => join_path(config_prefix_path, 'error.log'),
-  'AppRotateFiles'   => 1,
-  'AppRotateOnline'  => 1,
-  'AppRotateBytes'   => 20_000_000
-}
+if node['platform'] == 'windows'
+  default['consul_template']['nssm_params'] = {
+    'AppDirectory'     => data_path,
+    'AppStdout'        => join_path(config_prefix_path, 'stdout.log'),
+    'AppStderr'        => join_path(config_prefix_path, 'error.log'),
+    'AppRotateFiles'   => 1,
+    'AppRotateOnline'  => 1,
+    'AppRotateBytes'   => 20_000_000
+  }
+end
