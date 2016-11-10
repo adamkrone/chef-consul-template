@@ -26,7 +26,7 @@ describe 'consul_template_config resource' do
 
     it 'should notify consul-template to restart' do
       consul_template = chef_run.consul_template_config('test')
-      expect(consul_template).to notify('service[consul-template]').to(:restart).delayed
+      expect(consul_template).to notify('poise_service[consul-template]').to(:restart).delayed
     end
   end
 end

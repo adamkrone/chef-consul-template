@@ -65,3 +65,7 @@ Style/StringLiterals:
 Style/TrailingCommaInLiteral:
   Exclude:
     - 'attributes/checksums.rb'
+
+# Offense count: 1
+Metrics/BlockLength:
+  Enabled: false

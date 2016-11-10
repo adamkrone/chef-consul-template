@@ -45,5 +45,6 @@ poise_service 'consul-template' do
   command           "#{cmd} #{opt}"
   user              node['consul_template']['service_user']
   options           :systemd, after_target: 'network'
+  options           :sysvinit, user: 'root'
   restart_on_update true
 end

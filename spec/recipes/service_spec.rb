@@ -26,9 +26,7 @@ describe 'consul-template::service' do
     end
 
     it 'should create service with the correct command' do
-      expect(chef_run).to create_poise_service('consul-template')
-        .with(user: 'root')
-        .with(provider: 'sysvinit')
+      expect(chef_run).to enable_poise_service('consul-template')
     end
   end
 
@@ -42,9 +40,8 @@ describe 'consul-template::service' do
     end
 
     it 'should create service with the correct command' do
-      expect(chef_run).to create_poise_service('consul-template')
+      expect(chef_run).to enable_poise_service('consul-template')
         .with(user: 'consul-template')
-        .with(provider: 'upstart')
     end
   end
 
@@ -61,9 +58,8 @@ describe 'consul-template::service' do
     end
 
     it 'should create service with the correct command' do
-      expect(chef_run).to create_poise_service('consul-template')
+      expect(chef_run).to enable_poise_service('consul-template')
         .with(user: 'consul-template')
-        .with(provider: 'runit')
     end
   end
 
@@ -80,9 +76,8 @@ describe 'consul-template::service' do
     end
 
     it 'should create service with the correct command' do
-      expect(chef_run).to create_poise_service('consul-template')
+      expect(chef_run).to enable_poise_service('consul-template')
         .with(user: 'consul-template')
-        .with(provider: 'systemd')
     end
   end
 end
