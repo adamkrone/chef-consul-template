@@ -25,7 +25,7 @@ consul_template_directories.each do |dirname|
   directory dirname do
     owner node['consul_template']['service_user']
     group node['consul_template']['service_group']
-    mode 0755
+    mode 0o755
   end
 end
 
@@ -42,5 +42,8 @@ end
 
 # Create service using poise
 poise_service 'consul-template' do
-  command "#{cmd} #{opt}"
+  command           "#{cmd} #{opt}"
+  user              node['consul_template']['service_user']
+  options           :systemd, after_target: 'network'
+  restart_on_update true
 end

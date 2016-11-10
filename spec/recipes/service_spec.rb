@@ -24,6 +24,12 @@ describe 'consul-template::service' do
       expect(chef_run).to_not create_poise_service_user('root')
         .with(group: 'root')
     end
+
+    it 'should create service with the correct command' do
+      expect(chef_run).to create_poise_service('consul-template')
+        .with(user: 'root')
+        .with(provider: 'sysvinit')
+    end
   end
 
   context 'when using upstart' do
@@ -33,6 +39,12 @@ describe 'consul-template::service' do
     it 'should create the consul-template service user' do
       expect(chef_run).to create_poise_service_user('consul-template')
         .with(group: 'consul-template')
+    end
+
+    it 'should create service with the correct command' do
+      expect(chef_run).to create_poise_service('consul-template')
+        .with(user: 'consul-template')
+        .with(provider: 'upstart')
     end
   end
 
@@ -47,6 +59,12 @@ describe 'consul-template::service' do
       expect(chef_run).to create_poise_service_user('consul-template')
         .with(group: 'consul-template')
     end
+
+    it 'should create service with the correct command' do
+      expect(chef_run).to create_poise_service('consul-template')
+        .with(user: 'consul-template')
+        .with(provider: 'runit')
+    end
   end
 
   context 'when using systemd' do
@@ -59,6 +77,12 @@ describe 'consul-template::service' do
     it 'should create the consul-template service user' do
       expect(chef_run).to create_poise_service_user('consul-template')
         .with(group: 'consul-template')
+    end
+
+    it 'should create service with the correct command' do
+      expect(chef_run).to create_poise_service('consul-template')
+        .with(user: 'consul-template')
+        .with(provider: 'systemd')
     end
   end
 end
