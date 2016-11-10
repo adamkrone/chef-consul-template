@@ -10,7 +10,7 @@ EOF)
 version=$1
 [ -z "$version" ] && { echo "$USAGE"; exit 1; }
 
-
+empty_sha=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 systems=( darwin_386 darwin_amd64 freebsd_386 freebsd_amd64 freebsd_arm linux_386 linux_amd64 linux_arm netbsd_386 netbsd_amd64 netbsd_arm openbsd_386 openbsd_amd64 solaris_amd64 windows_386 windows_amd64 )
 files=()
 
@@ -28,8 +28,12 @@ function print_checksums {
   for file in "${files[@]}"
   do
     binary=https://releases.hashicorp.com/consul-template/${version}/${file}
-    checksum=$(curl -L -s $binary | shasum -a 256 | awk '{print $1}')
-    echo "'${file//.zip}' => '$checksum',"
+    checksum=$(curl -f -L -s $binary | shasum -a 256 | awk '{print $1}')
+    if [ "$checksum" = "$empty_sha" ]; then
+      >&2 echo "Failed to get binary: $binary"
+    else
+      echo "'${file//.zip}' => '$checksum',"
+    fi
   done
 }
 
