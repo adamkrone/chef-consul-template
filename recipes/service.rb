@@ -24,6 +24,9 @@ when 'runit'
 when 'systemd', 'upstart'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
+when 'supervisor'
+  consul_template_user = node['consul_template']['service_user']
+  consul_template_group = 'root'
 else
   consul_template_user = 'root'
   consul_template_group = 'root'
@@ -63,6 +66,8 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   content JSON.pretty_generate(node['consul_template']['config'], quirks_mode: true)
   if node['consul_template']['init_style'] == 'runit'
     notifies :restart, 'runit_service[consul-template]', :delayed
+  elsif node['consul_template']['init_style'] == 'supervisor'
+    notifies :restart, 'supervisor_service[consul-template]', :delayed
   else
     notifies :restart, 'service[consul-template]', :delayed
   end
@@ -132,4 +137,10 @@ when 'systemd'
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
   end
 
+when 'supervisor'
+  supervisor_service 'consul-template' do
+    command "#{node['consul_template']['install_dir']}/consul-template -config #{node['consul_template']['config_dir']}"
+    user consul_template_user
+    action [:enable, :start]
+  end
 end
