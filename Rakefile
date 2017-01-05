@@ -23,7 +23,7 @@ end
 begin
   require "kitchen/rake_tasks"
   Kitchen::RakeTasks.new
-rescue LoadError
+rescue LoadError, Kitchen::UserError
   task("kitchen:all") { puts "Unable to run `test-kitchen`" }
 end
 

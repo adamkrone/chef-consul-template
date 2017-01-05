@@ -2,10 +2,11 @@ language: ruby
 sudo: false
 bundler_args: --jobs 4 --without integration
 rvm:
-  - 2.1.8
   - 2.2.4
 script:
-  - bundle exec rake
+  - bundle exec rake rubocop
+  - bundle exec rake foodcritic
+  - bundle exec rake chefspec
 notifications:
   email:
     recipients:
