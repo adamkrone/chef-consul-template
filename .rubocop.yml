@@ -1,3 +1,9 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'metadata.rb'
