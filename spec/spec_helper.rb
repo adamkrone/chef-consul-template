@@ -3,6 +3,7 @@ require 'chefspec/berkshelf'
 require 'coveralls'
 
 require_relative 'support/matchers'
+require_relative '../libraries/consul-template_helpers.rb'
 
 Coveralls.wear!
 

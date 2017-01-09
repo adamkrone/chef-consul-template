@@ -34,7 +34,7 @@ Installs and configures [consul-template](https://github.com/hashicorp/consul-te
 - `node['consul_template']['config_dir']` - The directory that contains the
   configuration files for consul-template.
 - `node['consul_template']['init_style']` - Defines the init system that the
-  consul-template service should use. Supports 'init', 'runit', or 'systemd'.
+  consul-template service should use. Supports 'init', 'runit', 'systemd', or 'supervisor'.
 - `node['consul_template']['service_user']` - Defines the user that should be
   used for the consul-template service.
 - `node['consul_template']['service_group']` - Defines the group that should be

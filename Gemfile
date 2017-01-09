@@ -1,10 +1,14 @@
 source "https://rubygems.org"
 
 gem 'berkshelf'
-gem 'serverspec'
-gem 'foodcritic'
-gem 'chefspec'
 gem 'chef', '~> 12.7.2'
-gem 'rubocop', require: false
+gem 'chefspec'
 gem 'coveralls', require: false
+gem 'foodcritic'
+gem 'kitchen-vagrant'
+gem 'rubocop', require: false
+gem 'serverspec'
 gem 'stove'
+gem 'test-kitchen'
+gem 'winrm'
+gem 'winrm-fs'

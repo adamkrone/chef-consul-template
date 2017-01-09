@@ -6,10 +6,6 @@ def start_runit_service(resource_name)
   ChefSpec::Matchers::ResourceMatcher.new(:runit_service, :start, resource_name)
 end
 
-def cherry_pick_ark(resource_name)
-  ChefSpec::Matchers::ResourceMatcher.new(:ark, :cherry_pick, resource_name)
-end
-
 def install_golang_package(resource_name)
   ChefSpec::Matchers::ResourceMatcher.new(:golang_package, :install, resource_name)
 end

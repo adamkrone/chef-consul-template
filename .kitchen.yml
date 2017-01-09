@@ -8,6 +8,7 @@ provisioner:
 platforms:
   - name: ubuntu-14.04
   - name: ubuntu-12.04
+  - name: ubuntu-16.04
   - name: debian-8.2
   - name: debian-7.9
   - name: centos-6.7
@@ -115,5 +116,22 @@ suites:
           bootstrap_expect: 1
           server: true
       consul_template:
+        config:
+          consul: '127.0.0.1:8500'
+  - name: supervisor
+    run_list:
+      - recipe[supervisor::default]
+      - recipe[consul::default]
+      - recipe[consul-template::default]
+      - recipe[consul-template-spec::consul_template_config]
+    includes: ['centos-7.2']
+    attributes:
+      consul:
+        init_style: 'supervisor'
+        config:
+          bootstrap_expect: 1
+          server: true
+      consul_template:
+        init_style: 'supervisor'
         config:
           consul: '127.0.0.1:8500'

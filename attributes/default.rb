@@ -20,7 +20,18 @@ default['consul_template']['config_dir'] = if node['platform'] == 'windows'
                                            else
                                              '/etc/consul-template.d'
                                            end
-default['consul_template']['init_style'] = platform?("ubuntu") ? 'upstart' : 'init' # 'init', 'runit', 'systemd', 'upstart'
+
+# 'init', 'runit', 'systemd', 'upstart', 'supervisor'
+default['consul_template']['init_style'] = if platform?("ubuntu")
+                                             if Chef::VersionConstraint.new('>= 15.04').include?(node['platform_version'])
+                                               'systemd'
+                                             else
+                                               'upstart'
+                                             end
+                                           else
+                                             'init'
+                                           end
+
 default['consul_template']['service_user'] = 'consul-template'
 default['consul_template']['service_group'] = 'consul-template'
 default['consul_template']['template_mode'] = 0600
@@ -29,11 +40,13 @@ default['consul_template']['template_mode'] = 0600
 default['consul_template']['config'] = Hash.new
 
 # Windows only
-default['consul_template']['nssm_params'] = {
-  'AppDirectory'     => data_path,
-  'AppStdout'        => join_path(config_prefix_path, 'stdout.log'),
-  'AppStderr'        => join_path(config_prefix_path, 'error.log'),
-  'AppRotateFiles'   => 1,
-  'AppRotateOnline'  => 1,
-  'AppRotateBytes'   => 20_000_000
-}
+if node['platform'] == 'windows' 
+  default['consul_template']['nssm_params'] = {
+    'AppDirectory'     => data_path,
+    'AppStdout'        => join_path(config_prefix_path, 'stdout.log'),
+    'AppStderr'        => join_path(config_prefix_path, 'error.log'),
+    'AppRotateFiles'   => 1,
+    'AppRotateOnline'  => 1,
+    'AppRotateBytes'   => 20_000_000
+  }
+end

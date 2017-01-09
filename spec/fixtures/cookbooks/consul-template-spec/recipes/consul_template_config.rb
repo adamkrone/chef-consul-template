@@ -22,5 +22,9 @@ consul_template_config 'test' do
     command: 'touch /tmp/consul-template-command-test',
     perms: 777
   }]
-  notifies :restart, 'service[consul-template]'
+  if node['consul_template']['init_style'] == 'supervisor'
+    notifies :restart, 'supervisor_service[consul-template]'
+  else
+    notifies :restart, 'service[consul-template]'
+  end
 end
