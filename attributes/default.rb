@@ -22,15 +22,7 @@ default['consul_template']['config_dir'] = if node['platform'] == 'windows'
                                            end
 
 # 'init', 'runit', 'systemd', 'upstart', 'supervisor'
-default['consul_template']['init_style'] = if platform?("ubuntu")
-                                             if Chef::VersionConstraint.new('>= 15.04').include?(node['platform_version'])
-                                               'systemd'
-                                             else
-                                               'upstart'
-                                             end
-                                           else
-                                             'init'
-                                           end
+default['consul_template']['init_style'] = node['init_package']
 
 default['consul_template']['service_user'] = 'consul-template'
 default['consul_template']['service_group'] = 'consul-template'
