@@ -12,9 +12,10 @@ recipe 'consul-template::install_source', 'Installs consul-template from source.
 recipe 'consul-template::service', 'Configures and starts the consul-template service.'
 
 supports 'ubuntu', '>= 12.04'
-supports 'debian', '>= 6.0.10'
-supports 'centos', '>= 6.7'
+supports 'debian', '>= 7.11'
+supports 'centos', '>= 6.8'
 supports 'arch'
+supports 'windows'
 
 depends 'libarchive'
 depends 'golang', '~> 1.4'
