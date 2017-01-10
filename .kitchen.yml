@@ -6,13 +6,13 @@ provisioner:
   name: chef_zero
 
 platforms:
+  - name: ubuntu-16.04
   - name: ubuntu-14.04
   - name: ubuntu-12.04
-  - name: ubuntu-16.04
-  - name: debian-8.2
-  - name: debian-7.9
-  - name: centos-6.7
-  - name: centos-7.2
+  - name: debian-8.6
+  - name: debian-7.11
+  - name: centos-6.8
+  - name: centos-7.3
   - name: windows-2012r2
     driver:
       box: mwrock/Windows2012R2
