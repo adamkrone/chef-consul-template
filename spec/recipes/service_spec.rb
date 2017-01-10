@@ -21,7 +21,9 @@ describe 'consul-template::service' do
 
   context 'when using init' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'centos', version: '6.3').converge(described_recipe)
+      ChefSpec::SoloRunner.new do |node|
+        node.set['consul_template']['init_style'] = 'init'
+      end.converge(described_recipe)
     end
     it 'should create the consul-template init script' do
       expect(chef_run).to create_template('/etc/init.d/consul-template')
@@ -38,7 +40,9 @@ describe 'consul-template::service' do
 
   context 'when using upstart' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe)
+      ChefSpec::SoloRunner.new do |node|
+        node.set['consul_template']['init_style'] = 'upstart'
+      end.converge(described_recipe)
     end
     it 'should create the consul-template upstart script' do
       expect(chef_run).to create_template('/etc/init/consul-template.conf')
