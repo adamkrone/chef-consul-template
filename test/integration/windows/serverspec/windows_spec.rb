@@ -6,7 +6,7 @@ set :os, family: 'windows'
 describe 'Сonsul template service' do
   it 'has an executable file' do
     expect(file(
-             'C:\\Program Files\\consul_template\\consul-template_0.15.0_windows_amd64\\consul-template.exe'
+             'C:\\Program Files\\consul_template\\consul-template_0.16.0_windows_amd64\\consul-template.exe'
     )).to exist
   end
 
