@@ -3,7 +3,7 @@
 #
 
 default['consul_template']['base_url'] = 'https://releases.hashicorp.com/consul-template/'
-default['consul_template']['version'] = '0.15.0'
+default['consul_template']['version'] = '0.16.0'
 default['consul_template']['install_method'] = 'binary'
 default['consul_template']['install_dir'] = if node['platform'] == 'windows'
                                               "#{ENV['SystemDrive']}/Program Files/consul_template"
