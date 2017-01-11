@@ -21,6 +21,7 @@ when 'runit'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
   consul_template_directories << '/var/log/consul-template'
+  node.default['consul_template']['config']['kill_signal'] = 'SIGTERM'
 when 'systemd', 'upstart'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
