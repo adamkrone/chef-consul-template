@@ -70,6 +70,8 @@ suites:
         install_method: 'source'
         config:
           consul: '127.0.0.1:8500'
+      go:
+        version: '1.7.4'
   - name: runit
     run_list:
       - recipe[apt::default]
