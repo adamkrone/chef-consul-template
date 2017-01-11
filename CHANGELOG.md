@@ -1,6 +1,29 @@
 Consul Template Cookbook Changelog
 ==================================
 
+## v0.12.0 (January 11th, 2016)
+
+IMPROVEMENTS:
+
+- Adds initial support for Windows
+  ([GH-55](https://github.com/adamkrone/chef-consul-template/pull/55))
+- Adds support for supervisor init style
+  ([GH-37](https://github.com/adamkrone/chef-consul-template/pull/37))
+- Simplifies init style default, which is smarter about defaulting to
+  the most appropriate init system for a given OS.
+- Adds new configuration values
+  ([GH-61](https://github.com/adamkrone/chef-consul-template/pull/61))
+- Adds v0.16.0 and v0.18.0-rc1 checksums
+  ([GH-62](https://github.com/adamkrone/chef-consul-template/pull/62))
+- Updates kitchen suites
+- Wraps entire matchers.rb in ChefSpec conditional clause
+
+BUG FIXES:
+
+- Fixes Runit with v0.16.0 and greater
+- Fixes various issues in dev tools/testing
+  ([GH-63](https://github.com/adamkrone/chef-consul-template/pull/63))
+
 ## v0.11.0 (June 21st, 2016)
 
 IMPROVEMENTS:
