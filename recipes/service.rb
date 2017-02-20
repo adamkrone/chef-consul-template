@@ -9,6 +9,12 @@
 
 require 'json'
 
+# systemd configuration reload
+execute 'systemctl-daemon-reload' do
+  command '/bin/systemctl --system daemon-reload'
+  action :nothing
+end
+
 # Configure directories
 consul_template_directories = []
 consul_template_directories << node['consul_template']['config_dir']
@@ -129,6 +135,7 @@ when 'systemd'
       command: command,
       options: options
     )
+    notifies :run, 'execute[systemctl-daemon-reload]', :immediately
     notifies :restart, 'service[consul-template]', :immediately
   end
 
