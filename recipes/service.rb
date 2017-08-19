@@ -124,7 +124,7 @@ when 'runit'
 when 'systemd'
   template '/etc/systemd/system/consul-template.service' do
     source 'consul-template-systemd.erb'
-    mode 0o755
+    mode 0o644
     variables(
       command: command,
       options: options
