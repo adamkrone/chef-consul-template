@@ -20,6 +20,8 @@ default['consul_template']['config_dir'] = if node['platform'] == 'windows'
                                            else
                                              '/etc/consul-template.d'
                                            end
+default['consul_template']['consul_addr'] = '127.0.0.1:8500'
+default['consul_template']['vault_addr'] = 'https://127.0.0.1:8200'
 
 # 'init', 'runit', 'systemd', 'upstart', 'supervisor'
 default['consul_template']['init_style'] = node['init_package']
