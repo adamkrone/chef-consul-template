@@ -75,7 +75,9 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
 end
 
 command = "#{node['consul_template']['install_dir']}/consul-template"
-options = "-config #{node['consul_template']['config_dir']}"
+options = "-config #{node['consul_template']['config_dir']} " \
+          "-consul-addr #{node['consul_template']['consul_addr']} " \
+          "-vault-addr #{node['consul_template']['vault_addr']}"
 
 case node['consul_template']['init_style']
 when 'init', 'upstart'
@@ -124,7 +126,7 @@ when 'runit'
 when 'systemd'
   template '/etc/systemd/system/consul-template.service' do
     source 'consul-template-systemd.erb'
-    mode 0o755
+    mode 0o644
     variables(
       command: command,
       options: options

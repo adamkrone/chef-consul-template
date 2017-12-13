@@ -20,7 +20,7 @@ supports 'windows'
 depends 'libarchive'
 depends 'golang', '~> 1.4'
 depends 'runit'
-depends 'nssm', '~> 1.2'
+depends 'nssm'
 depends 'supervisor'
 
 issues_url 'https://github.com/adamkrone/chef-consul-template/issues' if respond_to?(:issues_url)
