@@ -18,7 +18,7 @@ supports 'arch'
 supports 'windows'
 
 depends 'libarchive'
-depends 'golang', '~> 1.4'
+depends 'golang'
 depends 'runit'
 depends 'nssm'
 
