@@ -101,14 +101,14 @@ when 'init', 'upstart'
   service 'consul-template' do
     provider Chef::Provider::Service::Upstart if is_upstart
     supports status: true, restart: true, reload: true
-    action [:enable, :start]
+    action %i[enable start]
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
   end
 
 when 'runit'
   runit_service 'consul-template' do
     supports status: true, restart: true
-    action [:enable, :start]
+    action %i[enable start]
     log true
     options(
       command: command,
@@ -131,7 +131,7 @@ when 'systemd'
 
   service 'consul-template' do
     supports status: true, restart: true, reload: true
-    action [:enable, :start]
+    action %i[enable start]
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
   end
 end

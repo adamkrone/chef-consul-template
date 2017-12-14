@@ -30,12 +30,12 @@ directory install_path do
 end
 
 powershell_script 'Unzip consul_template' do
-  code <<-EOH
+  code <<-PS
   $shell = new-object -com shell.application
   $zip = $shell.NameSpace('#{download_path}')
   foreach($item in $zip.items()) {
     $shell.Namespace('#{install_path}').copyhere($item)
   }
-  EOH
+  PS
   not_if { ::File.exist?("#{install_path}\\consul-template.exe") }
 end
