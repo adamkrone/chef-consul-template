@@ -8,6 +8,7 @@ User=<%= node['consul_template']['service_user'] %>
 Group=<%= node['consul_template']['service_group'] %>
 ExecStart=<%= @command %> <%= @options %>
 ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -INT $MAINPID
 KillMode=process
 Restart=on-failure
 RestartSec=42s
