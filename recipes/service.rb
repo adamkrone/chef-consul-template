@@ -60,6 +60,7 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   user consul_template_user
   group consul_template_group
   mode node['consul_template']['template_mode']
+  sensitive true
   action :create
   content JSON.pretty_generate(node['consul_template']['config'], quirks_mode: true)
   if node['consul_template']['init_style'] == 'runit'
