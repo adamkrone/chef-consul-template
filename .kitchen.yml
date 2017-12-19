@@ -50,26 +50,6 @@ suites:
       consul_template:
         config:
           consul: '127.0.0.1:8500'
-  - name: source
-    run_list:
-      - recipe[apt::default]
-      - recipe[consul::default]
-      - recipe[consul-template::default]
-      - recipe[consul-template-spec::consul_template_config]
-    excludes: ['windows-2012r2']
-    attributes:
-      apt:
-        compile_time_update: true
-      consul:
-        config:
-          bootstrap_expect: 1
-          server: true
-      consul_template:
-        install_method: 'source'
-        config:
-          consul: '127.0.0.1:8500'
-      go:
-        version: '1.7.4'
   - name: runit
     run_list:
       - recipe[apt::default]
