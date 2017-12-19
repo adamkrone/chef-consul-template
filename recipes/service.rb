@@ -94,7 +94,8 @@ when 'init', 'upstart'
       options: options,
       loglevel: node['consul_template']['log_level'],
       service_user: consul_template_user,
-      service_group: consul_template_group
+      service_group: consul_template_group,
+      environment: node['consul_template']['environment_variables']
     )
     notifies :restart, 'service[consul-template]', :immediately
   end
@@ -113,7 +114,8 @@ when 'runit'
     log true
     options(
       command: command,
-      options: options
+      options: options,
+      environment: node['consul_template']['environment_variables']
     )
     env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
@@ -125,7 +127,8 @@ when 'systemd'
     mode 0o644
     variables(
       command: command,
-      options: options
+      options: options,
+      environment: node['consul_template']['environment_variables']
     )
     notifies :restart, 'service[consul-template]', :immediately
   end

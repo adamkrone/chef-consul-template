@@ -16,6 +16,9 @@ NAME="consul-template"
 PIDFILE="/var/run/$NAME.pid"
 LOGFILE="/var/log/$NAME.log"
 
+<%- @environment.each do |key, val| -%>
+export <%= key %>="<%= val %>"
+<%- end -%>
 export GOMAXPROCS=${GOMAXPROCS}
 
 get_pid() {
