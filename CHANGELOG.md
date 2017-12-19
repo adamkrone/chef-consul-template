@@ -23,6 +23,14 @@ IMPROVEMENTS:
 - Fixes systemd service file permissions
   ([GH-74](https://github.com/adamkrone/chef-consul-template/pull/74))
 - Updates test suite OS matrix
+- Marks default.json as a sensitive resource
+  ([GH-71](https://github.com/adamkrone/chef-consul-template/issues/71))
+- Fixes systemd time out on stop/restart
+  ([GH-72](https://github.com/adamkrone/chef-consul-template/issues/72))
+- Adds configurable environment variables to init templates
+  ([GH-79](https://github.com/adamkrone/chef-consul-template/pull/79))
+- Reloads systemd after service file changes
+  ([GH-68](https://github.com/adamkrone/chef-consul-template/pull/68))
 
 ## v0.12.0 (January 11th, 2017)
 
