@@ -11,9 +11,9 @@ recipe 'consul-template::install_binary', 'Installs consul-template from binary.
 recipe 'consul-template::install_source', 'Installs consul-template from source.'
 recipe 'consul-template::service', 'Configures and starts the consul-template service.'
 
-supports 'ubuntu', '>= 12.04'
-supports 'debian', '>= 7.11'
-supports 'centos', '>= 6.8'
+supports 'ubuntu', '>= 14.04'
+supports 'debian', '>= 8.9'
+supports 'centos', '>= 6.9'
 supports 'arch'
 supports 'windows'
 
