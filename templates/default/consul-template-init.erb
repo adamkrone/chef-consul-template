@@ -16,6 +16,7 @@ NAME="consul-template"
 PIDFILE="/var/run/$NAME.pid"
 LOGFILE="/var/log/$NAME.log"
 
+[ -f /etc/default/${NAME} ] && . /etc/default/${NAME}
 export GOMAXPROCS=${GOMAXPROCS}
 
 get_pid() {
