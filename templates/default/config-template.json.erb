@@ -11,5 +11,8 @@ template {
   <% unless template[:wait].nil? %>
   wait = "<%= template[:wait] %>"
   <% end %>
+  <% unless template[:command_timeout].nil? %>
+  command_timeout = <%= template[:command_timeout] %>
+  <% end %>
 }
 <% end  %>
