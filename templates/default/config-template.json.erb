@@ -12,7 +12,7 @@ template {
   wait = "<%= template[:wait] %>"
   <% end %>
   <% unless template[:command_timeout].nil? %>
-  command_timeout = <%= template[:command_timeout] %>
+  command_timeout = "<%= template[:command_timeout] %>"
   <% end %>
 }
 <% end  %>
