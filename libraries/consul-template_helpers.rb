@@ -22,7 +22,7 @@ class Chef::Recipe::ConsulTemplateHelpers
     private
 
     def install_arch(machine_arch)
-      machine_arch.match?(/x86_64/) ? 'amd64' : '386'
+      machine_arch.match(/x86_64/) ? 'amd64' : '386'
     end
 
     # returns windows friendly version of the provided path,
@@ -41,7 +41,7 @@ class Chef::Recipe::ConsulTemplateHelpers
 
     def program_files
       join_path('C:', 'Program Files') +
-        (node['kernel']['machine'].match?(/x86_64/) ? '' : ' x(86)')
+        (node['kernel']['machine'].match(/x86_64/) ? '' : ' x(86)')
     end
 
     def config_prefix_path
