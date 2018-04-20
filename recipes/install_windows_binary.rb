@@ -15,7 +15,7 @@ url = ::URI.join(node['consul_template']['base_url'],
 
 download_path = "#{Chef::Config['file_cache_path']}\
 /#{ConsulTemplateHelpers.install_file(node)}".tr('/', '\\')
-install_path = "#{node['consul_template']['install_dir']}".tr('/', '\\')
+install_path = node['consul_template']['install_dir'].to_s.tr('/', '\\')
 
 remote_file download_path do
   source url
