@@ -27,8 +27,6 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   notifies :restart, "service[#{service_name}]", :delayed
 end
 
-nssm_params = node['consul_template']['nssm_params']
-
 command = "#{node['consul_template']['install_dir']}\
 /consul-template.exe".tr('/', '\\')
 
@@ -37,7 +35,7 @@ nssm_args = "-config=\"#{node['consul_template']['config_dir']}\""
 nssm service_name do
   program command
   args nssm_args
-  parameters nssm_params
+  parameters node['consul_template']['nssm_params']
   action :install
 end
 
