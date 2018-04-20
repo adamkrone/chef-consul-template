@@ -33,7 +33,6 @@ command = "#{node['consul_template']['install_dir']}\
 /consul-template.exe".tr('/', '\\')
 
 nssm_args = "-config=\"#{node['consul_template']['config_dir']}\""
-p nssm_args
 
 nssm service_name do
   program command
