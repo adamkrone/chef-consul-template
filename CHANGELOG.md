@@ -8,6 +8,7 @@ BREAKING CHANGES:
 - Removes installing from source. Will probably return at a later date.
 - Removes supervisor support.
   ([GH-70](https://github.com/adamkrone/chef-consul-template/issues/70))
+- If you previously relied on setting `['consul_template']['config']['consul']` to point to the Consul server, this will be overridden to `localhost:8500`. Use `default['consul_template']['vault_addr']` from now on.
 
 IMPROVEMENTS:
 
