@@ -9,6 +9,12 @@
 
 require 'json'
 
+# systemd configuration reload
+execute 'systemctl-daemon-reload' do
+  command '/bin/systemctl --system daemon-reload'
+  action :nothing
+end
+
 # Configure directories
 consul_template_directories = []
 consul_template_directories << node['consul_template']['config_dir']
@@ -25,9 +31,6 @@ when 'runit'
 when 'systemd', 'upstart'
   consul_template_user = node['consul_template']['service_user']
   consul_template_group = node['consul_template']['service_group']
-when 'supervisor'
-  consul_template_user = node['consul_template']['service_user']
-  consul_template_group = 'root'
 else
   consul_template_user = 'root'
   consul_template_group = 'root'
@@ -63,19 +66,20 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
   user consul_template_user
   group consul_template_group
   mode node['consul_template']['template_mode']
+  sensitive true
   action :create
   content JSON.pretty_generate(node['consul_template']['config'], quirks_mode: true)
   if node['consul_template']['init_style'] == 'runit'
     notifies :restart, 'runit_service[consul-template]', :delayed
-  elsif node['consul_template']['init_style'] == 'supervisor'
-    notifies :restart, 'supervisor_service[consul-template]', :delayed
   else
     notifies :restart, 'service[consul-template]', :delayed
   end
 end
 
 command = "#{node['consul_template']['install_dir']}/consul-template"
-options = "-config #{node['consul_template']['config_dir']}"
+options = "-config #{node['consul_template']['config_dir']} " \
+          "-consul-addr #{node['consul_template']['consul_addr']} " \
+          "-vault-addr #{node['consul_template']['vault_addr']}"
 
 case node['consul_template']['init_style']
 when 'init', 'upstart'
@@ -96,7 +100,8 @@ when 'init', 'upstart'
       options: options,
       loglevel: node['consul_template']['log_level'],
       service_user: consul_template_user,
-      service_group: consul_template_group
+      service_group: consul_template_group,
+      environment: node['consul_template']['environment_variables']
     )
     notifies :restart, 'service[consul-template]', :immediately
   end
@@ -104,18 +109,19 @@ when 'init', 'upstart'
   service 'consul-template' do
     provider Chef::Provider::Service::Upstart if is_upstart
     supports status: true, restart: true, reload: true
-    action [:enable, :start]
+    action %i[enable start]
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
   end
 
 when 'runit'
   runit_service 'consul-template' do
     supports status: true, restart: true
-    action [:enable, :start]
+    action %i[enable start]
     log true
     options(
       command: command,
-      options: options
+      options: options,
+      environment: node['consul_template']['environment_variables']
     )
     env 'CONSUL_TEMPLATE_LOG' => node['consul_template']['log_level']
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
@@ -124,24 +130,19 @@ when 'runit'
 when 'systemd'
   template '/etc/systemd/system/consul-template.service' do
     source 'consul-template-systemd.erb'
-    mode 0o755
+    mode 0o644
     variables(
       command: command,
-      options: options
+      options: options,
+      environment: node['consul_template']['environment_variables']
     )
+    notifies :run, 'execute[systemctl-daemon-reload]', :immediately
     notifies :restart, 'service[consul-template]', :immediately
   end
 
   service 'consul-template' do
     supports status: true, restart: true, reload: true
-    action [:enable, :start]
+    action %i[enable start]
     subscribes :restart, "libarchive_file[#{ConsulTemplateHelpers.install_file(node)}]", :delayed
-  end
-
-when 'supervisor'
-  supervisor_service 'consul-template' do
-    command "#{node['consul_template']['install_dir']}/consul-template -config #{node['consul_template']['config_dir']}"
-    user consul_template_user
-    action [:enable, :start]
   end
 end

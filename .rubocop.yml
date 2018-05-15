@@ -9,4 +9,5 @@ AllCops:
     - 'metadata.rb'
     - '.kitchen*'
     - 'attributes/*'
+    - 'spec/fixtures/**/*'
 inherit_from: .rubocop_todo.yml
