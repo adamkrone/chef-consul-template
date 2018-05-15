@@ -11,9 +11,6 @@ action :create do
   when 'runit', 'systemd', 'upstart'
     consul_template_user = node['consul_template']['service_user']
     consul_template_group = node['consul_template']['service_group']
-  when 'supervisor'
-    consul_template_user = node['consul_template']['service_user']
-    consul_template_group = 'root'
   else
     consul_template_user = 'root'
     consul_template_group = 'root'

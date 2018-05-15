@@ -38,5 +38,5 @@ end
 
 service service_name do
   supports status: true, restart: true, start: true
-  action [:enable, :start]
+  action %i[enable start]
 end

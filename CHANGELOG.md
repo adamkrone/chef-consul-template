@@ -1,7 +1,38 @@
 Consul Template Cookbook Changelog
 ==================================
 
-## v0.12.0 (January 11th, 2016)
+## v0.13.0 (December 20th, 2017)
+
+BREAKING CHANGES:
+
+- Removes installing from source. Will probably return at a later date.
+- Removes supervisor support.
+  ([GH-70](https://github.com/adamkrone/chef-consul-template/issues/70))
+
+IMPROVEMENTS:
+
+- Adds Chef 13 support
+  ([GH-70](https://github.com/adamkrone/chef-consul-template/issues/70))
+- Updates default version to v0.19.4, adds new checksums
+  ([GH-66](https://github.com/adamkrone/chef-consul-template/pull/66))
+  ([GH-76](https://github.com/adamkrone/chef-consul-template/pull/76))
+- Updates service options
+  ([GH-77](https://github.com/adamkrone/chef-consul-template/pull/77))
+- Unpins nssm cookbook version
+  ([GH-69](https://github.com/adamkrone/chef-consul-template/pull/69))
+- Fixes systemd service file permissions
+  ([GH-74](https://github.com/adamkrone/chef-consul-template/pull/74))
+- Updates test suite OS matrix
+- Marks default.json as a sensitive resource
+  ([GH-71](https://github.com/adamkrone/chef-consul-template/issues/71))
+- Fixes systemd time out on stop/restart
+  ([GH-72](https://github.com/adamkrone/chef-consul-template/issues/72))
+- Adds configurable environment variables to init templates
+  ([GH-79](https://github.com/adamkrone/chef-consul-template/pull/79))
+- Reloads systemd after service file changes
+  ([GH-68](https://github.com/adamkrone/chef-consul-template/pull/68))
+
+## v0.12.0 (January 11th, 2017)
 
 IMPROVEMENTS:
 

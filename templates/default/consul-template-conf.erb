@@ -8,6 +8,9 @@ kill timeout 20
 setuid <%= @service_user %>
 setgid <%= @service_group %>
 
+<%- @environment.each do |key, val| -%>
+env <%= key %>="<%= val %>"
+<%- end -%>
 env CONSUL_TEMPLATE_LOG=<%= @loglevel %>
 env GOMAXPROCS=${GOMAXPROCS}
 
