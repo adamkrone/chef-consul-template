@@ -1,6 +1,9 @@
 Consul Template Cookbook Changelog
 ==================================
 
+# 0.11.10<Or Arnon><21.06.2018><feature>
+  Increasing sleep to 2s between kill attempts and another step with pkill -15 (SIGTERM) before exiting with unsuccesfully.
+
 ## Unreleased
 
 IMPROVEMENTS:
