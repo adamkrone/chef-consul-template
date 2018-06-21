@@ -15,6 +15,7 @@ NAME="consul-template"
 
 PIDFILE="/var/run/$NAME.pid"
 LOGFILE="/var/log/$NAME.log"
+STOP_TIMEOUT=10
 
 [ -f /etc/default/${NAME} ] && . /etc/default/${NAME}
 export GOMAXPROCS=${GOMAXPROCS}
@@ -52,13 +53,18 @@ case "$1" in
             fi
 
             echo -n "."
-            sleep 1
+            sleep 2
         done
         echo
 
         if is_running; then
-            echo "$NAME not stopped; may still be shutting down or shutdown may have failed"
-            exit 1
+            echo "$NAME not stopped; Trying to send SIGTERM"
+            sleep 2
+            pkill -15 -f consul-template
+            if is_running; then
+                echo "$NAME not stopped; may still be shutting down or shutdown may have failed"
+                exit 1
+            fi
         else
             echo "$NAME stopped"
             if [ -f "$PIDFILE" ]; then
