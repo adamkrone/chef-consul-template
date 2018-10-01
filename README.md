@@ -41,7 +41,10 @@ Installs and configures [consul-template](https://github.com/hashicorp/consul-te
   used for the consul-template service.
 - `node['consul_template']['template_mode']` - File permissions mode for all
   consul-template configuration files.
+- `node['consul_template']['consul_addr']` - Name:port to access consul (default: `127.0.0.1:8500`)
+- `node['consul_template']['vault_addr']` - URL to access Vault (default: `https://127.0.0.1:8200`)
 
+Additionally, the contents of the `node['consul_template']['config']` hash will be reflected into the default configuration file -- `/etc/consul-template.d/default.json`.
 ## Recipes
 
 ### default
