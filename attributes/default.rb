@@ -34,12 +34,13 @@ default['consul_template']['template_mode'] = 0600
 # Config attributes
 default['consul_template']['config'] = Hash.new
 
+default['consul_template']['nssm_params'] = Hash.new
 # Windows only
 if node['platform'] == 'windows'
   default['consul_template']['nssm_params'] = {
-    'AppDirectory'     => data_path,
-    'AppStdout'        => join_path(config_prefix_path, 'stdout.log'),
-    'AppStderr'        => join_path(config_prefix_path, 'error.log'),
+    'AppDirectory'     => "#{node['consul_template']['install_dir']}".tr('/', '\\'),  # ConsulTemplateHelpers.join_path(node['consul_template']['install_dir'],'data'),
+    'AppStdout'        => "#{node['consul_template']['install_dir']}/stdout.log".tr('/', '\\'),  #ConsulTemplateHelpers.join_path(node['consul_template']['install_dir'], 'stdout.log'),
+    'AppStderr'        => "#{node['consul_template']['install_dir']}/error.log".tr('/', '\\'),  #ConsulTemplateHelpers.join_path(node['consul_template']['install_dir'], 'error.log'),
     'AppRotateFiles'   => 1,
     'AppRotateOnline'  => 1,
     'AppRotateBytes'   => 20_000_000

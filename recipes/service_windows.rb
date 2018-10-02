@@ -28,11 +28,14 @@ file File.join(node['consul_template']['config_dir'], 'default.json') do
 end
 
 command = "#{node['consul_template']['install_dir']}\
-/#{ConsulTemplateHelpers.install_version(node)}/consul-template.exe".tr('/', '\\')
+/consul-template.exe".tr('/', '\\')
+
+nssm_args = "-config=\"#{node['consul_template']['config_dir']}\""
+
 nssm service_name do
   program command
-  args %(-config="""#{node['consul_template']['config_dir']}""")
-  params node['consul_template']['nssm_params']
+  args nssm_args
+  parameters node['consul_template']['nssm_params']
   action :install
 end
 
