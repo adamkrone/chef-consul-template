@@ -27,7 +27,7 @@ action :create do
     unless node['platform'] == 'windows'
       user consul_template_user
       group consul_template_group
-      mode 0o755
+      mode 0755
     end
     recursive true
     action :create
