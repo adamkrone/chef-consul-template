@@ -7,7 +7,7 @@
 #
 #
 
-include_recipe 'libarchive::default'
+include_recipe 'libarchive::default' unless Chef::VERSION.to_i >= 14
 require 'chef/version_constraint'
 
 url = ::URI.join(node['consul_template']['base_url'],
@@ -23,15 +23,27 @@ remote_file download_path do
   action :create_if_missing
 end
 
-libarchive_file ConsulTemplateHelpers.install_file(node) do
-  path download_path
-  extract_to install_path
-  mode 0o755
-  not_if { File.exist? install_path }
-  action :extract
+libarchive_version = run_context.cookbook_collection['libarchive'].version.to_f.round(2)
+case libarchive_version
+when 2.0
+  archive_file ConsulTemplateHelpers.install_file(node) do
+    path download_path
+    extract_to install_path
+    mode 0755
+    not_if { File.exist? install_path }
+    action :extract
+  end
+when libarchive_version < 2.0
+  libarchive_file ConsulTemplateHelpers.install_file(node) do
+    path download_path
+    extract_to install_path
+    mode 0755
+    not_if { File.exist? install_path }
+    action :extract
+  end
 end
 
 link "#{node['consul_template']['install_dir']}/consul-template" do
   to "#{install_path}/consul-template"
-  mode 0o755
+  mode 0755
 end
