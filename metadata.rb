@@ -17,7 +17,11 @@ supports 'centos', '>= 6.9'
 supports 'arch'
 supports 'windows'
 
-depends 'libarchive', '>= 2.0.0'
+if Chef::VERSION.to_i <= 14
+  depends 'libarchive', '>= 2.0.0'
+else
+  depends 'libarchive', '<= 1.0.0'
+end
 depends 'golang'
 depends 'runit'
 depends 'nssm'
