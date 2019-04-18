@@ -30,6 +30,9 @@ default['consul_template']['environment_variables'] = Hash.new
 default['consul_template']['service_user'] = 'consul-template'
 default['consul_template']['service_group'] = 'consul-template'
 default['consul_template']['template_mode'] = 0600
+default['consul_template']['create_service_user'] = true
+default['consul_template']['create_service_group'] = true
+
 
 # Config attributes
 default['consul_template']['config'] = Hash.new
