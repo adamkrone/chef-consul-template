@@ -39,6 +39,7 @@ end
 # Create service user
 user consul_template_user do
   not_if { consul_template_user == 'root' }
+  not_if { node['consul_template']['create_service_user'] == false }
   home '/dev/null'
   shell '/bin/false'
   comment 'consul-template service user'
@@ -47,6 +48,7 @@ end
 # Create service group
 group consul_template_group do
   not_if { consul_template_group == 'root' }
+  not_if { node['consul_template']['create_service_group'] == false }
   members consul_template_user
   append true
 end
